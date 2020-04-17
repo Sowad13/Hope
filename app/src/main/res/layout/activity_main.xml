@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="450dp"
+        android:text="H"
+        android:textSize="100dp"
+        android:fontFamily="@font/bangers"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="450dp"
+        android:text="O"
+        android:textSize="100dp"
+        android:fontFamily="@font/bangers"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="235dp"
+        android:layout_marginTop="450dp"
+        android:text="P"
+        android:textSize="100dp"
+        android:fontFamily="@font/bangers"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="450dp"
+        android:text="E"
+        android:textSize="100dp"
+        android:fontFamily="@font/bangers"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="199dp"
+        android:layout_marginTop="440dp"
+        android:text="."
+        android:textSize="80dp"
+        android:fontFamily="@font/bangers"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="440dp"
+        android:fontFamily="@font/bangers"
+        android:text="."
+        android:textSize="80dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="297dp"
+        android:layout_marginTop="440dp"
+        android:text="."
+        android:textSize="80dp"
+        android:fontFamily="@font/bangers"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="34dp"
+        app:srcCompat="@drawable/hopeback1f" />
+
+
+</RelativeLayout>
+
+
+
+
+

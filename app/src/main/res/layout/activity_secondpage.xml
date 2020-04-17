@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".secondpage">
+
+
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="#dbdbdb"
+        android:hint="Username"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="#dbdbdb"
+        android:hint="Password"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="382dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="576dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/cust_but2"
+        android:text="LOG IN"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="87dp"
+        android:layout_marginTop="663dp"
+        android:text="New to HOPE?"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="231dp"
+        android:layout_marginTop="660dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="#dbdbdb"
+        android:text="Sign Up" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="373dp"
+        android:layout_height="313dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/welc" />
+
+
+</RelativeLayout>

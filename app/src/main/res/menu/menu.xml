@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="#666666">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Tasks"
+        app:cnb_backgroundColor="#faf2de"
+        app:cnb_textColor="@color/self"
+        app:cnb_iconColor="@color/self" />
+
+    <item
+        android:id="@+id/like"
+        android:icon="@drawable/ic_love"
+        android:title="Self-Care"
+        app:cnb_backgroundColor="#e3d9fc"
+        app:cnb_textColor="@color/prec"
+        app:cnb_iconColor="@color/prec" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="Psychiatrist"
+        app:cnb_backgroundColor="#ffe0f6"
+        app:cnb_textColor="@color/mess"
+        app:cnb_iconColor="@color/mess" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Community"
+        app:cnb_backgroundColor="#d9f5fa"
+        app:cnb_textColor="@color/comm"
+        app:cnb_iconColor="@color/comm" />
+
+
+</menu>
