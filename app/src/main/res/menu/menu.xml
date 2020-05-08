@@ -6,7 +6,7 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
-        android:title="Tasks"
+        android:title="Home"
         app:cnb_backgroundColor="#faf2de"
         app:cnb_textColor="@color/self"
         app:cnb_iconColor="@color/self" />
