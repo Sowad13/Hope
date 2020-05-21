@@ -12,5 +12,7 @@
     <color name="mess">#C9379D</color>
     <color name="self">#e3a209</color>
     <color name="comm">#1194AA</color>
+    <color name="bg_bubble_self">#62caa6</color>
+    <color name="bg_bubble_watbot">#ecf0f1</color>
 
 </resources>

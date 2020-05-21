@@ -8,10 +8,8 @@
     tools:context=".secondpage">
 
 
-
-
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/loginEmail"
         android:layout_width="350dp"
         android:layout_height="45dp"
         android:layout_alignParentLeft="true"
@@ -22,23 +20,11 @@
         android:layout_marginRight="12dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="#dbdbdb"
-        android:hint="Username"
-        android:textAlignment="center" />
+        android:hint="Email"
+        android:textAlignment="center"
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="350dp"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/custom_button"
-        android:backgroundTint="#dbdbdb"
-        android:hint="Password"
-        android:textAlignment="center" />
+        />
+
 
     <Button
         android:id="@+id/button"
@@ -87,6 +73,39 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         app:srcCompat="@drawable/welc" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="12dp"
+        app:passwordToggleEnabled="true"
+        android:textAlignment="center"
+        app:hintEnabled="false"
+
+
+        >
+
+
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="#dbdbdb"
+            android:inputType="textPassword"
+            android:hint="Password"
+           android:textAlignment="center"
+            />
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>

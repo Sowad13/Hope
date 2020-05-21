@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="@color/colorbg"
+    >
+
+    <EditText
+        android:id="@+id/registerEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:hint="Email..."
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_marginTop="300dp"
+
+        />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerEmail"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="true"
+        android:textAlignment="center"
+        app:hintEnabled="false"
+
+
+        >
+
+        <EditText
+            android:id="@+id/registerpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:hint="Password..."
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <Button
+        android:id="@+id/registerbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textLayout"
+        android:layout_marginTop="30dp"
+        android:background="@color/bg_bubble_self"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textSize="30dp" />
+
+
+
+
+</RelativeLayout>

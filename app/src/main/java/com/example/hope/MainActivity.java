@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Animation topanim,botanim,leftanim,rightanim;
     ImageView image;
     TextView H,O,P,E;
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botanim = AnimationUtils.loadAnimation(this,R.anim.bot_anim);
         leftanim = AnimationUtils.loadAnimation(this,R.anim.left_anim);
         rightanim = AnimationUtils.loadAnimation(this,R.anim.right_anim);
+
+        mAuth = FirebaseAuth.getInstance();
 
 
         H = findViewById(R.id.textView);
@@ -55,9 +60,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this,secondpage.class);
-                startActivity(intent);
-                finish();
+                // if user don't logout then user will sent to dashbord every time user opens the app
+                if(mAuth.getCurrentUser()!=null)
+                {
+                    Intent intent= new Intent(MainActivity.this,Dashboard.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, secondpage.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         },SPLASH_SCREEN);
 
