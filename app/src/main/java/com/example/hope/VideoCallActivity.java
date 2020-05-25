@@ -30,14 +30,14 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
 
     private static  String Api_key = "46760242";
     private static  String session_Id = "2_MX40Njc2MDI0Mn5-MTU5MDM1MDY1OTAzMX5BWXJsZlJya2gwWXdMSFZqZ2ptWjdCK1l-fg";
-    private static  String token = "T1==cGFydG5lcl9pZD00Njc2MDI0MiZzaWc9YmY1ZDQ2NzUzMDNjNmY0ODczZGIwOTdhMGY3NzBhNmNhZWI4ZTVlNDpzZXNzaW9uX2lkPTJfTVg0ME5qYzJNREkwTW41LU1UVTVNRE0xTURZMU9UQXpNWDVCV1hKc1psSnlhMmd3V1hkTVNGWnFaMnB0V2pkQ0sxbC1mZyZjcmVhdGVfdGltZT0xNTkwNDA4NjY3Jm5vbmNlPTAuNDM0ODM0NjgxMDUwNDQ1NzYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU5MDQzMDI2NiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+    private static  String token = "T1==cGFydG5lcl9pZD00Njc2MDI0MiZzaWc9ZjY2YmQyZjQ5MDI2Y2MxMjk0N2M1ODJlN2I5OWUzOGNmMTgxMmIxMDpzZXNzaW9uX2lkPTJfTVg0ME5qYzJNREkwTW41LU1UVTVNRE0xTURZMU9UQXpNWDVCV1hKc1psSnlhMmd3V1hkTVNGWnFaMnB0V2pkQ0sxbC1mZyZjcmVhdGVfdGltZT0xNTkwNDI4NTU3Jm5vbmNlPTAuNzAzNTIxODgyNTIwMzQwOSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTkwNDUwMTU0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
     private static  final String log_tag = VideoCallActivity.class.getSimpleName();
     private static  final int RC_Video_Permission  = 124;
 
-    private FrameLayout subscriber,publisher;
+    private FrameLayout subscriber,publisher,subscriber2;
     private Session msession;
     private Publisher mpublisher;
-    private Subscriber msubscriber;
+    private Subscriber msubscriber,msubscriber2;
     DatabaseReference userRef;
 
     Button cancel;
@@ -59,6 +59,8 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
                 if(mpublisher!=null)
                 {
                     mpublisher.destroy();
+                    msubscriber.destroy();
+                    msubscriber2.destroy();
                     Intent intent = new Intent(VideoCallActivity.this,Dashboard.class);
                     startActivity(intent);
                     finish();
@@ -91,6 +93,7 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
         {
 
             subscriber = findViewById(R.id.subscriber_container);
+            subscriber2 = findViewById(R.id.subscriber2_container);
             publisher = findViewById(R.id.publisher_container);
 
 
@@ -175,6 +178,11 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
             msession.subscribe(msubscriber);
 
             subscriber.addView(msubscriber.getView());
+
+        msubscriber2 = new Subscriber.Builder(this,stream).build();
+        msession.subscribe(msubscriber2);
+
+        subscriber2.addView(msubscriber2.getView());
 
 
         //}
