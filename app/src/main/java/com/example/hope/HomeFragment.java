@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeFragment extends Fragment {
 
     ImageButton BotChat;
-    Button logout;
+    Button logout,videocall;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
     @Nullable
@@ -28,10 +28,19 @@ public class HomeFragment extends Fragment {
 
         BotChat = v.findViewById(R.id.chatbot_btn);
         logout = v.findViewById(R.id.logout_btn);
+        videocall = v.findViewById(R.id.video_call);
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new CustomLoadingBar(getActivity());
 
 
+        videocall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),VideoCallActivity.class);
+                startActivity(intent);
+            }
+        });
         BotChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

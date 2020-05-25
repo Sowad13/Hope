@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".VideoCallActivity"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".ChatBotActivity" />
         <activity android:name=".Dashboard" />
         <activity android:name=".secondpage" />
@@ -41,7 +42,7 @@
             android:authorities="${applicationId}.here.this.library.provider"
             android:exported="false"
             android:grantUriPermissions="true"
-            tools:replace="android:authorities"></provider>
+            tools:replace="android:authorities" />
     </application>
 
 </manifest>

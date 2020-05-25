@@ -13,12 +13,20 @@
         android:src="@mipmap/ic_face"
         android:layout_centerVertical="true"
         />
+    <Button
+        android:id="@+id/video_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chatbot_btn"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:text="video call" />
 
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chatbot_btn"
+        android:layout_below="@+id/video_call"
         android:layout_marginTop="39dp"
         android:layout_centerHorizontal="true"
         android:text="Logout" />

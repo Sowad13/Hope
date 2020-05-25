@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
+   DatabaseReference UserRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerpassword);
         registerButton = findViewById(R.id.registerbutton);
+        UserRef = FirebaseDatabase.getInstance().getReference();
         loadingBar = new CustomLoadingBar(RegisterActivity.this);
 
 
@@ -80,10 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                         final FirebaseUser user = mAuth.getCurrentUser();
+                        final  String UserId = mAuth.getCurrentUser().getUid();
 
                         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+
+                                UserRef.child("Users").child(UserId).setValue("");
                                 Toast.makeText(RegisterActivity.this, "Verification has sent", Toast.LENGTH_SHORT).show();
                                     mAuth.signOut();
                                     Intent intent = new Intent(RegisterActivity.this, secondpage.class);
@@ -100,6 +107,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             }
                         });
+
+
+
 
 
 
