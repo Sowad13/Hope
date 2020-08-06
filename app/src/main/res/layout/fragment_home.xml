@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorbg2"
+    android:background="@color/bg_1"
     >
 
     <ImageButton
@@ -12,6 +12,7 @@
         android:background="@drawable/custom_button"
         android:src="@mipmap/ic_face"
         android:layout_centerVertical="true"
+        android:elevation="5dp"
         />
     <Button
         android:id="@+id/video_call"

@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +27,9 @@ public class secondpage extends AppCompatActivity implements View.OnClickListene
     EditText email,password;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
+    ImageView LoginVisibility;
+
+    int visible = 0;
 
 
 
@@ -36,11 +42,31 @@ public class secondpage extends AppCompatActivity implements View.OnClickListene
         signup = (Button) findViewById(R.id.button2);
         email = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.loginPassword);
+        LoginVisibility = findViewById(R.id.login_visibility);
         loadingBar = new CustomLoadingBar(secondpage.this);
         mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
 
 
+        LoginVisibility.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(visible==0) {
+                    LoginVisibility.setImageResource(R.drawable.ic_visibility_black_24dp);
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    visible =1;
+                }
+                else if(visible == 1)
+                {
+                    LoginVisibility.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    visible =0;
+                }
+
+
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

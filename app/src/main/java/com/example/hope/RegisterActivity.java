@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,12 +29,14 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText email, password;
+    EditText email, password,confirmPassword;
     Button registerButton;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
    DatabaseReference UserRef;
+   ImageView visibility,visibility2;
 
+   int visible = 0,visible2 = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.registerpassword);
         registerButton = findViewById(R.id.registerbutton);
         UserRef = FirebaseDatabase.getInstance().getReference();
+        confirmPassword = findViewById(R.id.register_confirm_password);
+        visibility = findViewById(R.id.visibility);
+        visibility2 = findViewById(R.id.visibility_2);
         loadingBar = new CustomLoadingBar(RegisterActivity.this);
-
-
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +60,44 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterNewUser();
             }
         });
+
+
+        visibility.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(visible==0) {
+                    visibility.setImageResource(R.drawable.ic_visibility_black_24dp);
+                    confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    visible =1;
+                }
+               else if(visible == 1)
+                {
+                    visibility.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                    confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    visible =0;
+                }
+            }
+        });
+
+
+        visibility2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(visible2==0) {
+                    visibility2.setImageResource(R.drawable.ic_visibility_black_24dp);
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    visible2=1;
+                }
+                else if(visible2 == 1)
+                {
+                    visibility2.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    visible2=0;
+                }
+            }
+        });
+
+
 
 
     }
