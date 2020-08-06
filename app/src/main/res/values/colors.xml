@@ -14,5 +14,6 @@
     <color name="comm">#1194AA</color>
     <color name="bg_bubble_self">#62caa6</color>
     <color name="bg_bubble_watbot">#ecf0f1</color>
+    <color name="greenish">#80CBC4</color>
 
 </resources>
