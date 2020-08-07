@@ -29,7 +29,7 @@ public class ComunityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getContext(),AddingPost.class);
+                Intent intent = new Intent(getContext(),Adding_post.class);
                 startActivity(intent);
             }
         });

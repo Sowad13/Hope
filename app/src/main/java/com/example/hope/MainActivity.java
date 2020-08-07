@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         O = findViewById(R.id.textView3);
         P = findViewById(R.id.textView4);
         E = findViewById(R.id.textView5);
-        image = findViewById(R.id.imageView4);
+       // image = findViewById(R.id.imageView4);
 
 
         H.setAnimation(rightanim);
         O.setAnimation(topanim);
         P.setAnimation(botanim);
         E.setAnimation(leftanim);
-        image.setAnimation(topanim);
+      //  image.setAnimation(topanim);
 
         new Handler().postDelayed(new Runnable() {
             @Override

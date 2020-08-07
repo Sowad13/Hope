@@ -110,14 +110,28 @@
         android:elevation="5dp"/>
 
     <ImageView
+        android:id="@+id/brain"
+        android:layout_width="244dp"
+        android:layout_height="166dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="65dp"
+        app:srcCompat="@drawable/brain" />
+
+    <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_width="294dp"
+        android:layout_height="265dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="34dp"
-        app:srcCompat="@drawable/hopeback1f" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="53dp"
+        app:srcCompat="@drawable/hopelogo" />
 
 
 </RelativeLayout>

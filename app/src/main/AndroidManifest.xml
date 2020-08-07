@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddingPost"></activity>
+        <activity android:name=".Adding_post"></activity>
         <activity android:name=".VideoCallActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ChatBotActivity" />
