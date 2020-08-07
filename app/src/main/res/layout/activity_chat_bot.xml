@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatBotActivity"
-    android:background="@color/colorbg2"
+    android:background="@color/bg_1"
     >
 
     <androidx.recyclerview.widget.RecyclerView

@@ -33,6 +33,14 @@
                 android:layout_gravity="top|end"
                 android:background="@color/bg_bubble_self">
 
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/background"
+                    android:visibility="invisible"
+                    />
+
 
             </FrameLayout>
 

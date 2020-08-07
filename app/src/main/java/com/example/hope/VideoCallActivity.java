@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,10 +31,12 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
 
     private static  String Api_key = "46760242";
     private static  String session_Id = "2_MX40Njc2MDI0Mn5-MTU5MDM1MDY1OTAzMX5BWXJsZlJya2gwWXdMSFZqZ2ptWjdCK1l-fg";
-    private static  String token = "T1==cGFydG5lcl9pZD00Njc2MDI0MiZzaWc9ZjY2YmQyZjQ5MDI2Y2MxMjk0N2M1ODJlN2I5OWUzOGNmMTgxMmIxMDpzZXNzaW9uX2lkPTJfTVg0ME5qYzJNREkwTW41LU1UVTVNRE0xTURZMU9UQXpNWDVCV1hKc1psSnlhMmd3V1hkTVNGWnFaMnB0V2pkQ0sxbC1mZyZjcmVhdGVfdGltZT0xNTkwNDI4NTU3Jm5vbmNlPTAuNzAzNTIxODgyNTIwMzQwOSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTkwNDUwMTU0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
+    private static  String token = "T1==cGFydG5lcl9pZD00Njc2MDI0MiZzaWc9ZjcyY2M2NDA2NzBhZmMwMzMwOTdhNjVkZDMyZmE4ZDk3ZTVlMDE1NTpzZXNzaW9uX2lkPTJfTVg0ME5qYzJNREkwTW41LU1UVTVNRE0xTURZMU9UQXpNWDVCV1hKc1psSnlhMmd3V1hkTVNGWnFaMnB0V2pkQ0sxbC1mZyZjcmVhdGVfdGltZT0xNTkwNjEwNjUyJm5vbmNlPTAuMDU0OTUwNzI0MTE3MjY4MiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTkzMjAyNjUxJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
     private static  final String log_tag = VideoCallActivity.class.getSimpleName();
     private static  final int RC_Video_Permission  = 124;
+Stream stream;
 
+    ImageView im;
     private FrameLayout subscriber,publisher,subscriber2;
     private Session msession;
     private Publisher mpublisher;
@@ -50,6 +53,7 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
         cancel = findViewById(R.id.cancel_button);
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        im=findViewById(R.id.img);
         requestPermission();
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -174,15 +178,32 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
 
      //   if(msubscriber==null) // subscriber isnt talking to any one
        // {
-            msubscriber = new Subscriber.Builder(this,stream).build();
+
+
+
+
+
+        msubscriber = new Subscriber.Builder(this,stream).build();
             msession.subscribe(msubscriber);
 
             subscriber.addView(msubscriber.getView());
 
-        msubscriber2 = new Subscriber.Builder(this,stream).build();
-        msession.subscribe(msubscriber2);
+         msubscriber.setSubscribeToAudio(false);
 
-        subscriber2.addView(msubscriber2.getView());
+
+         if(msubscriber2==null&&msubscriber!=null)
+         {
+             // subscriber2.addView(msubscriber.getView());
+         }
+         else {
+             msubscriber2 = new Subscriber.Builder(this, stream).build();
+             msession.subscribe(msubscriber2);
+
+             subscriber2.addView(msubscriber2.getView());
+         }
+
+
+
 
 
         //}
@@ -207,4 +228,6 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
 }

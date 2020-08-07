@@ -4,26 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/bg_1"
     tools:context=".secondpage">
 
 
     <EditText
         android:id="@+id/loginEmail"
-        android:layout_width="350dp"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="440dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/custom_button"
-        android:backgroundTint="#dbdbdb"
         android:hint="Email"
         android:textAlignment="center"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:elevation="5dp"
 
         />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/loginEmail"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button"
+        android:elevation="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        >
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:padding="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/login_visibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_visibility_off_black_24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+
+    </LinearLayout>
 
 
     <Button
@@ -35,10 +71,14 @@
         android:layout_marginLeft="18dp"
         android:layout_marginTop="576dp"
         android:layout_marginRight="13dp"
-        android:background="@drawable/cust_but2"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/button_color"
         android:text="LOG IN"
         android:textColor="#FFFFFF"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -50,7 +90,10 @@
         android:layout_marginTop="663dp"
         android:text="New to HOPE?"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:elevation="5dp"
+        />
 
     <Button
         android:id="@+id/button2"
@@ -61,8 +104,11 @@
         android:layout_marginLeft="231dp"
         android:layout_marginTop="660dp"
         android:background="@drawable/custom_button"
-        android:backgroundTint="#dbdbdb"
-        android:text="Sign Up" />
+        android:backgroundTint="@color/button_color"
+        android:text="Sign Up"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -72,40 +118,13 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        app:srcCompat="@drawable/welc" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginRight="12dp"
-        app:passwordToggleEnabled="true"
-        android:textAlignment="center"
-        app:hintEnabled="false"
-
-
-        >
+        app:srcCompat="@drawable/welc"
+        android:elevation="5dp"
+        />
 
 
 
-        <EditText
-            android:id="@+id/loginPassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="#dbdbdb"
-            android:inputType="textPassword"
-            android:hint="Password"
-           android:textAlignment="center"
-            />
 
-
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>
