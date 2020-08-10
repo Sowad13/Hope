@@ -111,26 +111,26 @@
 
     <ImageView
         android:id="@+id/brain"
-        android:layout_width="244dp"
-        android:layout_height="166dp"
+        android:layout_width="305dp"
+        android:layout_height="127dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="38dp"
         app:srcCompat="@drawable/brain" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="294dp"
-        android:layout_height="265dp"
+        android:layout_width="224dp"
+        android:layout_height="189dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="53dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginEnd="83dp"
         app:srcCompat="@drawable/hopelogo" />
 
 

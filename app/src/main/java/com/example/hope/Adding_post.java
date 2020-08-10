@@ -31,9 +31,8 @@ public class Adding_post extends AppCompatActivity {
     private static final int REQUESCODE = 1;
     private static final int PReqCode = 1;
 
-    Dialog popAddPost ;
 
-    ImageView popupUserImage,popupPostImage;
+    ImageView popupUserImage;
     ImageView addpic,addpost;
     TextView popupTitle,popupDescription;
     ProgressBar progressBar;
@@ -109,7 +108,7 @@ public class Adding_post extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == REQUESCODE && data != null ) {
 
             pickedImgUri = data.getData() ;
-            popupPostImage.setImageURI(pickedImgUri);
+           addpic.setImageURI(pickedImgUri);
 
 
         }
@@ -121,19 +120,19 @@ public class Adding_post extends AppCompatActivity {
     private void iniPopup() {
 
 
-        popAddPost = new Dialog(this);
+     /*   popAddPost = new Dialog(this);
         popAddPost.setContentView(R.layout.activity_adding_post);
         popAddPost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popAddPost.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
-        popAddPost.getWindow().getAttributes().gravity = Gravity.TOP;
+        popAddPost.getWindow().getAttributes().gravity = Gravity.TOP;*/
 
 
-        popupUserImage = popAddPost.findViewById(R.id.dp);
-        addpic = popAddPost.findViewById(R.id.picAdd);
-        popupTitle = popAddPost.findViewById(R.id.addTitle);
-        popupDescription = popAddPost.findViewById(R.id.addDescription);
-        addpost = popAddPost.findViewById(R.id.postAdd);
-        progressBar = popAddPost.findViewById(R.id.progress);
+        popupUserImage = findViewById(R.id.dp);
+        addpic = findViewById(R.id.picAdd);
+        popupTitle = findViewById(R.id.addTitle);
+        popupDescription = findViewById(R.id.addDescription);
+        addpost = findViewById(R.id.postAdd);
+        progressBar = findViewById(R.id.progress);
 
 
         Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
