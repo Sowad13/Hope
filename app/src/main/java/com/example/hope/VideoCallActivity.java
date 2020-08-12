@@ -34,7 +34,7 @@ public class VideoCallActivity extends AppCompatActivity implements Session.Sess
     private static  String token = "T1==cGFydG5lcl9pZD00Njc2MDI0MiZzaWc9ZjcyY2M2NDA2NzBhZmMwMzMwOTdhNjVkZDMyZmE4ZDk3ZTVlMDE1NTpzZXNzaW9uX2lkPTJfTVg0ME5qYzJNREkwTW41LU1UVTVNRE0xTURZMU9UQXpNWDVCV1hKc1psSnlhMmd3V1hkTVNGWnFaMnB0V2pkQ0sxbC1mZyZjcmVhdGVfdGltZT0xNTkwNjEwNjUyJm5vbmNlPTAuMDU0OTUwNzI0MTE3MjY4MiZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTkzMjAyNjUxJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
     private static  final String log_tag = VideoCallActivity.class.getSimpleName();
     private static  final int RC_Video_Permission  = 124;
-Stream stream;
+    Stream stream;
 
     ImageView im;
     private FrameLayout subscriber,publisher,subscriber2;
@@ -176,31 +176,31 @@ Stream stream;
 
         Log.i(log_tag,"Session Received");
 
-     //   if(msubscriber==null) // subscriber isnt talking to any one
-       // {
+        //   if(msubscriber==null) // subscriber isnt talking to any one
+        // {
 
 
 
 
 
         msubscriber = new Subscriber.Builder(this,stream).build();
-            msession.subscribe(msubscriber);
+        msession.subscribe(msubscriber);
 
-            subscriber.addView(msubscriber.getView());
+        subscriber.addView(msubscriber.getView());
 
-         msubscriber.setSubscribeToAudio(false);
+        msubscriber.setSubscribeToAudio(false);
 
 
-         if(msubscriber2==null&&msubscriber!=null)
-         {
-             // subscriber2.addView(msubscriber.getView());
-         }
-         else {
-             msubscriber2 = new Subscriber.Builder(this, stream).build();
-             msession.subscribe(msubscriber2);
+        if(msubscriber2==null&&msubscriber!=null)
+        {
+            // subscriber2.addView(msubscriber.getView());
+        }
+        else {
+            msubscriber2 = new Subscriber.Builder(this, stream).build();
+            msession.subscribe(msubscriber2);
 
-             subscriber2.addView(msubscriber2.getView());
-         }
+            subscriber2.addView(msubscriber2.getView());
+        }
 
 
 

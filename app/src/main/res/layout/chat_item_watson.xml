@@ -24,7 +24,9 @@
         android:fontFamily="sans-serif"
         android:textColor="@android:color/black"
         android:textIsSelectable="true"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:elevation="5dp"
+        />
 
     <ImageView
         android:id="@+id/image"

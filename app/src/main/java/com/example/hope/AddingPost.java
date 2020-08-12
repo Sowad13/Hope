@@ -65,11 +65,14 @@ public class AddingPost extends AppCompatActivity {
 
     private void setupPopupImageClick() {
 
+        Toast.makeText(AddingPost.this,"Please accept for required permission",Toast.LENGTH_SHORT).show();
+
         popupPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 checkAndRequestForPermission();
+                Toast.makeText(AddingPost.this,"Please accept for required permission",Toast.LENGTH_SHORT).show();
 
 
             }
@@ -148,6 +151,8 @@ public class AddingPost extends AppCompatActivity {
          Glide.with(AddingPost.this).load(currentUser.getPhotoUrl()).into(popupUserImage);
 
         // Add post click Listener
+        Toast.makeText(AddingPost.this,"dhuksi",Toast.LENGTH_SHORT).show();
+
 
         popupAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +161,7 @@ public class AddingPost extends AppCompatActivity {
                 popupAddBtn.setVisibility(View.INVISIBLE);
                 popupClickProgress.setVisibility(View.VISIBLE);
 
+                Toast.makeText(AddingPost.this,"Please accept for required permission",Toast.LENGTH_SHORT).show();
 
                 if(!popupTitle.getText().toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
