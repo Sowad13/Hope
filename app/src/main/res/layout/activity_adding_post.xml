@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/bg_1"
+    tools:context=".Adding_post">
+
+
+    <EditText
+        android:id="@+id/addTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardbackground"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/addDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTitle"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/cardbackground"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
+
+    <ImageView
+        android:id="@+id/picAdd"
+        android:layout_width="398dp"
+        android:layout_height="255dp"
+        android:layout_below="@+id/addDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[7]" />
+
+
+    <ImageView
+        android:id="@+id/postAdd"
+        android:layout_width="78dp"
+        android:layout_height="69dp"
+        android:layout_below="@+id/picAdd"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-35dp"
+        android:layout_marginEnd="159dp"
+        android:background="@drawable/circle_background"
+        android:padding="12dp"
+        app:srcCompat="@drawable/creat" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="80dp"
+        android:layout_height="66dp"
+        android:layout_alignStart="@+id/postAdd"
+        android:layout_alignEnd="@+id/postAdd"
+        android:layout_alignBottom="@+id/postAdd"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/circle_background"
+        android:visibility="invisible" />
+</RelativeLayout>
