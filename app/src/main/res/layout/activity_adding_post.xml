@@ -2,97 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/DP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/comunity">
+    android:padding="10dp"
+    android:background="@color/bg_1"
+    tools:context=".Adding_post">
 
 
     <EditText
         android:id="@+id/addTitle"
-        android:layout_width="408dp"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardbackground"
         android:ems="10"
         android:hint="Title"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/addDescription"
-        android:layout_width="408dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/addTitle"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/cardbackground"
         android:ems="10"
         android:hint="Description"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
 
     <ImageView
-        android:id="@+id/addImage"
-        android:layout_width="410dp"
-        android:layout_height="277dp"
+        android:id="@+id/picAdd"
+        android:layout_width="398dp"
+        android:layout_height="255dp"
         android:layout_below="@+id/addDescription"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="-1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="357dp"
-        android:background="@color/greenish"
-        tools:srcCompat="@tools:sample/backgrounds/scenic[4]" />
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[7]" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="88dp"
-        android:layout_height="76dp"
-        android:layout_alignStart="@+id/addPost"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="310dp"
-        android:background="@drawable/circle_background"
-        android:padding="4dp"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteY="335dp" />
 
     <ImageView
-        android:id="@+id/addPost"
-        android:layout_width="wrap_content"
-        android:layout_height="81dp"
-        android:layout_alignParentStart="true"
+        android:id="@+id/postAdd"
+        android:layout_width="78dp"
+        android:layout_height="69dp"
+        android:layout_below="@+id/picAdd"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="172dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="311dp"
+        android:layout_marginTop="-35dp"
+        android:layout_marginEnd="159dp"
         android:background="@drawable/circle_background"
         android:padding="12dp"
-        app:srcCompat="@drawable/creat"
-        tools:layout_editor_absoluteY="332dp" />
+        app:srcCompat="@drawable/creat" />
 
-    <ImageView
-        android:id="@+id/dp"
-        android:layout_width="42dp"
-        android:layout_height="47dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="367dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="1dp"
-
-        tools:srcCompat="@tools:sample/avatars[6]" />
-
-    />
-
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="80dp"
+        android:layout_height="66dp"
+        android:layout_alignStart="@+id/postAdd"
+        android:layout_alignEnd="@+id/postAdd"
+        android:layout_alignBottom="@+id/postAdd"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/circle_background"
+        android:visibility="invisible" />
 </RelativeLayout>
