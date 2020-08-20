@@ -24,13 +24,13 @@ import java.util.List;
 public class ComunityFragment extends Fragment {
 
 
-    FirebaseDatabase database;
+    //FirebaseDatabase database;
     FloatingActionButton floatingActionButton;
     RecyclerView postRecyclerview;
     post_adapter Adapterpost;
     List<detailpost> mData;
-    DatabaseReference likeReference;
-    Boolean likeChecker = false;
+    //DatabaseReference likeReference;
+   // Boolean likeChecker = false;
 
 
 
@@ -40,7 +40,7 @@ public class ComunityFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_community, container, false);
 
 
-       floatingActionButton = v.findViewById(R.id.fabbutton);
+        floatingActionButton = v.findViewById(R.id.fabbutton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +55,6 @@ public class ComunityFragment extends Fragment {
         postRecyclerview = v.findViewById(R.id.recycler);
         postRecyclerview.setHasFixedSize(true);
         mData = new ArrayList<>();
-
-        likeReference = database.getReference("likes");
-
 
         mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
         mData.add(new detailpost(detailpost.TEXT_TYPE,"hi","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
@@ -80,13 +77,7 @@ public class ComunityFragment extends Fragment {
         Adapterpost = new post_adapter (getActivity(),mData);
         postRecyclerview.setAdapter(Adapterpost);
         postRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
-
-
         return v;
-
     }
 
 }
