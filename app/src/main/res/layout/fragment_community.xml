@@ -30,7 +30,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/create"
-            app:backgroundTint="@color/comm"/>
+            app:backgroundTint="@color/bg_1"/>
 
 
 

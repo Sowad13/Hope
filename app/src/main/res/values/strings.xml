@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Hope</string>
     <string name="menu_refresh">Refresh</string>
+
+    <string-array name="feelings">
+        <item>Feeling Happy</item>
+        <item>Feeling Sad</item>
+        <item>Feeling Angry</item>
+        <item>Feeling Depressed</item>
+        <item>Feeling Broken</item>
+
+    </string-array>
 </resources>

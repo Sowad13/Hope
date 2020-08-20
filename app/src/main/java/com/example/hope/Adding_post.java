@@ -10,12 +10,16 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.opengl.EGLExt;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +35,8 @@ public class Adding_post extends AppCompatActivity {
 
     ImageView popupUserImage;
     ImageView addpic,addpost;
-    TextView popupTitle,popupDescription;
+    TextView popupDescription;
+    Spinner popupTitle;
     ProgressBar progressBar;
 
     private Uri pickedImgUri = null;
@@ -126,8 +131,24 @@ public class Adding_post extends AppCompatActivity {
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
         popupTitle = findViewById(R.id.addTitle);
+        ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );
+        spinarrayadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
+        popupTitle.setAdapter( spinarrayadapter );
+        popupTitle.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String titletext = parent.getItemAtPosition( position ).toString();
+               // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        } );
+
         popupDescription = findViewById(R.id.addDescription);
-         addpost = findViewById(R.id.postAdd);
+        addpost = findViewById(R.id.postAdd);
         progressBar = findViewById(R.id.progress);
 
 
@@ -143,10 +164,10 @@ public class Adding_post extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if(!popupTitle.getText().toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
 
-                    //create post and add to firebase
+                    //created post add to firebase
 
 
 

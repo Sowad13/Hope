@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeimgview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/post_bg"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="10dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/uploadedimg"
+        android:layout_width="match_parent"
+        android:layout_height="277dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
+    <RelativeLayout
+        android:id="@+id/relativeDescription"
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="238dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/uititlecard"
+        android:padding="8dp">
+
+
+        <ImageView
+            android:id="@+id/userdp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            tools:srcCompat="@tools:sample/avatars[0]" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userdp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="1dp"
+            android:text="Nushraat Jahan"
+            android:textStyle="bold"
+            tools:text="@tools:sample/first_names" />
+
+        <TextView
+            android:id="@+id/imgTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/userdp"
+            android:padding="8dp"
+            android:text="Simple Title Text"
+            android:textColor="@color/colordeepblue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/imgDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgTitle"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-condensed"
+            android:lineSpacingExtra="6dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+            android:textColor="@color/colorBlack" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_alignTop="@+id/uploadedimg"
+        android:layout_alignEnd="@+id/uploadedimg"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/blanktrust" />
+
 
 </RelativeLayout>

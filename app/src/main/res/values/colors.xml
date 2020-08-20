@@ -15,17 +15,19 @@
     <color name="bg_bubble_self">#62caa6</color>
     <color name="bg_bubble_watbot">#ecf0f1</color>
     <color name="pinkish">#E1BEE7</color>
-    <color name="comunity">#B2EBF2</color>
+    <color name="comunity">#33cccc</color>
+    <color name="cardtwo">#85e0e0</color>
 
 
 
     <color name="bg_1">#F2FDEC</color>
+    <color name="post_bg">#d5ded1</color>       //#c0cfb8
     <color name="bg_2">#CCFBAC</color>
     <color name="button_color"> #85B885</color>
     <color name="colorBlack">#000</color>
 
     <color name="white">#ffffff</color>
 
-
+//#d5ded1
 
 </resources>
