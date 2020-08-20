@@ -1,36 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardviewDailtTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:cardElevation="15dp"
+        android:layout_marginTop="10dp"
+        android:elevation="15dp"
+        >
+
+    <ImageButton
+        android:id="@+id/dailytask_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cust_but2"
+        android:src="@mipmap/dailytask"
+        android:padding="5dp"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardviewChatBot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:cardElevation="15dp"
+        android:layout_marginTop="10dp"
+        android:elevation="15dp"
+        android:layout_below="@+id/cardviewDailtTask"
+        >
 
     <ImageButton
         android:id="@+id/chatbot_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:src="@mipmap/ic_face"
-        android:layout_centerVertical="true"
-        android:elevation="5dp"
+        android:background="@drawable/cust_but2"
+        android:src="@mipmap/chat"
+        android:padding="5dp"
         />
-    <Button
-        android:id="@+id/video_call"
-        android:layout_width="match_parent"
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardvieWebinar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chatbot_btn"
+        android:layout_centerHorizontal="true"
+        app:cardElevation="15dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="video call" />
+        android:elevation="15dp"
+        android:layout_below="@+id/cardviewChatBot"
+        >
+
+        <ImageButton
+            android:id="@+id/video_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cust_but2"
+            android:padding="5dp"
+            android:src="@mipmap/webinar" />
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/video_call"
+        android:layout_below="@+id/cardvieWebinar"
         android:layout_marginTop="39dp"
         android:layout_centerHorizontal="true"
         android:text="Logout" />
 
-
 </RelativeLayout>
+</ScrollView>
