@@ -1,0 +1,48 @@
+package com.example.hope;
+
+ public class Users {
+
+
+
+    public String id;
+
+    public String username;
+    public String imageURL;
+
+
+
+     public Users(int type, String username, String imageURL, int user_item) {
+        this.id = id;
+        this.username = username;
+        this.imageURL = imageURL;
+
+    }
+
+
+
+
+     public String getId() {
+         return id;
+     }
+
+     public void setId(String id) {
+         this.id = id;
+     }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+}
