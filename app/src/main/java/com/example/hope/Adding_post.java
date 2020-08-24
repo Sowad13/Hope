@@ -1,5 +1,6 @@
 package com.example.hope;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,8 +24,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Adding_post extends AppCompatActivity {
 
@@ -44,6 +52,8 @@ public class Adding_post extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
+    FirebaseDatabase mData;
+    DatabaseReference mreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,10 @@ public class Adding_post extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        mData = FirebaseDatabase.getInstance();
+        mreference = mData.getReference();
+        String UserId = mAuth.getCurrentUser().getUid();
+
 
         iniPopup();
         setupPopupImageClick();
@@ -128,9 +142,14 @@ public class Adding_post extends AppCompatActivity {
     private void iniPopup() {
 
 
+        popupDescription = findViewById(R.id.addDescription);
+        addpost = findViewById(R.id.postAdd);
+        progressBar = findViewById(R.id.progress);
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
+
         popupTitle = findViewById(R.id.addTitle);
+
         ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );
         spinarrayadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
         popupTitle.setAdapter( spinarrayadapter );
@@ -147,9 +166,7 @@ public class Adding_post extends AppCompatActivity {
             }
         } );
 
-        popupDescription = findViewById(R.id.addDescription);
-        addpost = findViewById(R.id.postAdd);
-        progressBar = findViewById(R.id.progress);
+
 
 
         //Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
@@ -164,18 +181,42 @@ public class Adding_post extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() || pickedImgUri != null) {
 
 
                     //created post add to firebase
+                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                    final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
+                    imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                            imageFilePath.getDownloadUrl().addOnSuccessListener( new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
 
+                                    String imageDownlaodLink = uri.toString();
+
+                                   // detailpost detailpost = new detailpost( 0,popupTitle.getText().toString(),popupDescription.getText().toString(),
+                                     //       user.getPhotoUrl().toString(),imageDownlaodLink);
+
+//                                    postAddedtoFirebase(detailpost);
+
+                                }
+                            } ).addOnFailureListener( new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            } );
+                        }
+                    } );
 
 
                 }
 
                 else{
-                    showMessage("Please verify all input fields and choose Post Image") ;
+                    showMessage("Please verify all input fields or choose Post Image") ;
                     addpost.setVisibility(View.VISIBLE);
                     progressBar.setVisibility( View.INVISIBLE);
 
@@ -187,10 +228,15 @@ public class Adding_post extends AppCompatActivity {
 
     }
 
+  //  private void postAddedtoFirebase(detailpost detailpost) {
 
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+  //      DatabaseReference databaseReference = database.getReference("Posts");
 
+    //    String key = databaseReference.getKey();
+      //  detailpost.setPostKey(key);
 
-
+    //}
 
 
     private void showMessage(String message) {
