@@ -116,14 +116,14 @@ public class Dashboard extends AppCompatActivity  {
                     selectedFragment = new HomeFragment();
                     break;
 
-                case R.id.like:
-                    selectedFragment = new UsersFragment(); // replace this part
-                    break;
-
-                case R.id.search:
+                case R.id.selfcare:
                     selectedFragment = new SelfcareFragment(); // replace this part
                     break;
-                case R.id.profile:
+
+                case R.id.psychiatrist:
+                    selectedFragment = new UsersFragment(); // replace this part
+                    break;
+                case R.id.community:
                     selectedFragment = new ComunityFragment(); // replace this part
                     break;
 

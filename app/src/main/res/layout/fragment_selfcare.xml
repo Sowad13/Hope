@@ -1,8 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pinkish">
+    android:background="@color/bg_1">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="197dp"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/yogabutton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="385dp"
+            android:layout_height="165dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/cardbackground"
+            android:fontFamily="serif-monospace"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Yoga for Inner Peace: A Stress-Relieving Sequence"
+            android:textStyle="bold|italic" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="10dp">
+
+
+        <Button
+            android:id="@+id/newsbutton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="385dp"
+            android:layout_height="165dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/cardbackground"
+            android:padding="10dp"
+            android:fontFamily="serif-monospace"
+            android:text="Morjina lives in a rural village in Bangladesh. When she was 12 she was taken out of school to marry her 25 year old cousin.  "
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+
+
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>
+
+</ScrollView>

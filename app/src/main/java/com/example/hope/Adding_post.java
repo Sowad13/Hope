@@ -43,9 +43,10 @@ public class Adding_post extends AppCompatActivity {
 
     ImageView popupUserImage;
     ImageView addpic,addpost;
-    TextView popupDescription;
-    Spinner popupTitle;
+    TextView popupDescription,popupTitle;
+    Spinner popupTitleSpinner;
     ProgressBar progressBar;
+    String titletext;
 
     private Uri pickedImgUri = null;
 
@@ -149,15 +150,27 @@ public class Adding_post extends AppCompatActivity {
         addpic = findViewById(R.id.picAdd);
 
         popupTitle = findViewById(R.id.addTitle);
+        popupTitleSpinner = findViewById(R.id.addTitlespinner);
 
         ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );
         spinarrayadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-        popupTitle.setAdapter( spinarrayadapter );
-        popupTitle.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+        popupTitleSpinner.setAdapter( spinarrayadapter );
+        popupTitleSpinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String titletext = parent.getItemAtPosition( position ).toString();
-               // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
+
+                titletext = popupTitleSpinner.getSelectedItem().toString();
+               // if(titletext == "How are you feeling?")
+               // {
+               //     showMessage( "Please choose how are u feeling");
+               // }
+                //else{
+
+                    popupTitle.setText( titletext );
+                //}
+
+
+                // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -181,11 +194,11 @@ public class Adding_post extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() || pickedImgUri != null) {
+                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
 
                     //created post add to firebase
-                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                   /* StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
                     final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
                     imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -198,7 +211,7 @@ public class Adding_post extends AppCompatActivity {
                                     String imageDownlaodLink = uri.toString();
 
                                    // detailpost detailpost = new detailpost( 0,popupTitle.getText().toString(),popupDescription.getText().toString(),
-                                     //       user.getPhotoUrl().toString(),imageDownlaodLink);
+                                   //       user.getPhotoUrl().toString(),imageDownlaodLink);
 
 //                                    postAddedtoFirebase(detailpost);
 
@@ -210,8 +223,12 @@ public class Adding_post extends AppCompatActivity {
                                 }
                             } );
                         }
-                    } );
+                    } );*/
 
+
+                }
+                else if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() || pickedImgUri != null)
+                {
 
                 }
 
@@ -223,6 +240,7 @@ public class Adding_post extends AppCompatActivity {
                 }
 
             }
+
 
         });
 

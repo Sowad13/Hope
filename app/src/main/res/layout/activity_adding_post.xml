@@ -9,8 +9,16 @@
     tools:context=".Adding_post">
 
 
-    <Spinner
+    <TextView
         android:id="@+id/addTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardbackground"
+        android:ems="10"
+        android:padding="10dp" />
+
+    <Spinner
+        android:id="@+id/addTitlespinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cardbackground"
