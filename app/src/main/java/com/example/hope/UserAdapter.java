@@ -99,7 +99,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             username = itemView.findViewById(R.id.user_name);
             profileImage = itemView.findViewById(R.id.profile_image);
-            userItem = itemView.findViewById(R.id.constraintuser);
+            userItem = itemView.findViewById(R.id.userlist);
 
 
         }
