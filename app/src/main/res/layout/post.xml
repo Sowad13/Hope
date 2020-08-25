@@ -2,20 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="10dp"
     android:orientation="vertical"
+    android:background="@color/post_bg"
     android:padding="5dp">
 
     <RelativeLayout
         android:id="@+id/RL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/cardbackground"
         android:padding="10dp"
-        android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,9 +26,11 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
             android:lineSpacingExtra="6dp"
+            android:padding="5dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-            android:textColor="@color/white" />
+            android:textColor="@color/colorBlack" />
 
     </RelativeLayout>
 
@@ -55,23 +60,44 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profilepic"
             android:layout_marginTop="0dp"
-            android:text="TextView"
+            android:text="Nushraat Jahan"
             android:textSize="12dp"
             android:textStyle="bold"
             tools:text="@tools:sample/first_names" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="244dp"
+            android:layout_width="124dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="3dp"
-            android:background="@drawable/uititlecard"
-            android:text="Simple Title Text"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="102dp"
+            android:text="Feeling Depressed"
             android:textColor="@color/colordeepblue"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/likebutton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_below="@+id/title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/blanktrust" />
+
+        <TextView
+            android:id="@+id/likescounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="6dp"
+            android:layout_toStartOf="@+id/likebutton"
+            android:text="100"
+            android:textStyle="bold|italic" />
+
     </RelativeLayout>
 
 
