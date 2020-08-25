@@ -71,14 +71,28 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/logout_btn"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardvieBreathing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cardvieWebinar"
-        android:layout_marginTop="39dp"
         android:layout_centerHorizontal="true"
-        android:text="Logout" />
+        app:cardElevation="15dp"
+        android:layout_marginTop="10dp"
+        android:elevation="15dp"
+        android:layout_below="@+id/cardvieWebinar"
+        >
+
+        <ImageButton
+            android:id="@+id/Breathing_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cust_but2"
+            android:padding="5dp"
+            android:src="@mipmap/breathingexercise" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
 </RelativeLayout>
 </ScrollView>

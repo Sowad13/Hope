@@ -17,8 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
 
-    ImageButton BotChat,videocall;
-    Button logout;
+    ImageButton BotChat,videocall,Breathing;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
     @Nullable
@@ -27,8 +26,8 @@ public class HomeFragment extends Fragment {
         View v =inflater.inflate(R.layout.fragment_home,container,false);
 
         BotChat = v.findViewById(R.id.chatbot_btn);
-        logout = v.findViewById(R.id.logout_btn);
         videocall = v.findViewById(R.id.video_call);
+        Breathing = v.findViewById(R.id.Breathing_exercise);
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new CustomLoadingBar(getActivity());
 
@@ -52,26 +51,25 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        Breathing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingBar.StartLoadingDialog();
-                mAuth.signOut();
-                loadingBar.DismissLoadingDialog();
-                Intent intent = new Intent(getActivity(),secondpage.class);
+
+                Intent intent = new Intent(getContext(),BreathingActivity.class);
                 startActivity(intent);
-                getActivity().finish();
-
-
-
-
-
-
-
 
 
             }
         });
+
+
+
+
+
+
+
+
+
 
 
         return v;
