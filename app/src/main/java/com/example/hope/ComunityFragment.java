@@ -56,27 +56,27 @@ public class ComunityFragment extends Fragment {
         postRecyclerview.setHasFixedSize(true);
         mData = new ArrayList<>();
 
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"hi","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.itachi,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling heavy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",0,0));
         mData.add(new detailpost(detailpost.IMAGE_TYPE,"Feeling sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,R.drawable.upimgtrial));
         mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Depressed","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"go","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"OnePlus 6T Camera Review:","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Hello","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"OnePlus 6T Camera Review:","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"hi","jhgf iuhfi ieuf oij fowieufo oedjow8u eofkwoeu fom f ofijowsiejufo ioeifuiw8e o wuei wue riweyu fiwefu 9ie f8wioefj owiefu  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.IMAGE_TYPE,"OnePlus 6T Camera Review:","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,R.drawable.itachi));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"No","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"OnePlus 6T Camera Review:","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"go","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"OnePlus 6T Camera Review:","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Hello","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling down","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling good","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling thoughtful","jhgf iuhfi ieuf oij fowieufo oedjow8u eofkwoeu fom f ofijowsiejufo ioeifuiw8e o wuei wue riweyu fiwefu 9ie f8wioefj owiefu  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
+        mData.add(new detailpost(detailpost.IMAGE_TYPE,"Feeling Frustrated","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,R.drawable.itachi));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling lost","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling loved","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling heavy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Stressed","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Empty","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
 
 
-        Adapterpost = new post_adapter (getActivity(),mData);
+        Adapterpost = new post_adapter (getContext(),mData);
         postRecyclerview.setAdapter(Adapterpost);
-        postRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        postRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         return v;
     }
 

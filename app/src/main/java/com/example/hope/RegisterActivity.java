@@ -106,6 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String userPassword = password.getText().toString();
         String userEmail = email.getText().toString();
+        String confirm = confirmPassword.getText().toString();
 
         if (userEmail.isEmpty()|| !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
             email.setError("Enter Valid Email");
@@ -116,7 +117,13 @@ public class RegisterActivity extends AppCompatActivity {
             password.setError("Password length should be more than 6");
             loadingBar.DismissLoadingDialog();
             //Toast.makeText(RegisterActivity.this, "Enter password more than 6 word  ", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+       else if(confirm.isEmpty()||confirm!=userPassword)
+        {
+            confirmPassword.setError("Password does not match");
+            loadingBar.DismissLoadingDialog();
+        }
+       else {
 
            // creating new user
             mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

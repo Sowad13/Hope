@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import static android.media.CamcorderProfile.get;
 import static com.example.hope.detailpost.IMAGE_TYPE;
 import static com.example.hope.detailpost.TEXT_TYPE;
 
@@ -84,7 +85,9 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
                 case TEXT_TYPE:
                     ((textviewpost) holder).heading.setText(object.title);
                     ((textviewpost) holder).content.setText(object.description);
-                    ((textviewpost) holder).userprofile.setImageResource( object.userdp);
+
+                    //((textviewpost) holder).userprofile.setImageResource( object.userdp);
+                    Glide.with(mContext).load(mData.get(position).getUserdp()).into(((textviewpost) holder).userprofile);
 
                     textviewpost.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.transitionanimation));
 
@@ -94,13 +97,18 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
 
                 case IMAGE_TYPE:
                       ((imageviewpost) holder).imgheading.setText(object.title);
-                      ((imageviewpost) holder).imgupload.setImageResource(object.data);
-                      ((imageviewpost) holder).imgcontent.setText( object.description );
-                      ((imageviewpost)holder).ivuserprofile.setImageResource( object.userdp );
 
-                      imageviewpost.imgcontainer.setAnimation( AnimationUtils.loadAnimation( mContext,R.anim.transitionanimation ) );
+                      //  ((imageviewpost) holder).imgupload.setImageResource(object.imgUpload);
+                    Glide.with(mContext).load(mData.get(position).getImgUpload()).into(((imageviewpost) holder).picupload);
 
-                      break;
+                    ((imageviewpost) holder).imgcontent.setText( object.description );
+
+                     // ((imageviewpost)holder).ivuserprofile.setImageResource( object.userdp );
+                    Glide.with(mContext).load(mData.get(position).getUserdp()).into(((imageviewpost) holder).ivuserprofile);
+
+                    imageviewpost.imgcontainer.setAnimation( AnimationUtils.loadAnimation( mContext,R.anim.transitionanimation ) );
+
+                    break;
 
             }
         }
@@ -125,20 +133,21 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
          TextView heading;
          TextView content;
          ImageView userprofile;
-         TextView likesnumber;
+     //    TextView likesnumber;
          ImageView like;
          static ConstraintLayout container;
 
 
-        public textviewpost(@NonNull View itemView) {
+        public textviewpost(@NonNull final View itemView) {
             super(itemView);
 
             container = itemView.findViewById(R.id.constraint);
             heading = itemView.findViewById(R.id.title);
             content = itemView.findViewById(R.id.description);
             userprofile = itemView.findViewById( R.id.profilepic);
-            likesnumber = itemView.findViewById( R.id.likescounter );
-            like = itemView.findViewById( R.id.likebutton );
+            //likesnumber = itemView.findViewById( R.id.likescounter );
+            // like = itemView.findViewById( R.id.likebutton );
+
 
         }
     }
@@ -149,7 +158,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
         TextView imgheading;
         TextView imgcontent;
         ImageView ivuserprofile;
-        ImageView imgupload;
+        ImageView picupload;
         static RelativeLayout imgcontainer;
         static RelativeLayout imgcoverTitle;
 
@@ -162,7 +171,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             imgheading = itemView.findViewById(R.id.imgTitle);
             imgcontent = itemView.findViewById(R.id.imgDescription);
             ivuserprofile = itemView.findViewById( R.id.userdp);
-            imgupload = itemView.findViewById( R.id.uploadedimg );
+            picupload = itemView.findViewById( R.id.uploadedimg );
 
            // imgcoverTitle = itemView.findViewById( R.id.relativeTitle );
         }

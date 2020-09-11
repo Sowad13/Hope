@@ -9,7 +9,8 @@
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:layout_marginEnd="10dp"
-    android:padding="10dp">
+    android:padding="5dp"
+   >
 
     <ImageView
         android:id="@+id/uploadedimg"
@@ -23,14 +24,14 @@
 
     <RelativeLayout
         android:id="@+id/relativeDescription"
-        android:layout_width="386dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="261dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/uititlecard"
         android:padding="8dp">
@@ -40,7 +41,9 @@
             android:id="@+id/userdp"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             tools:srcCompat="@tools:sample/avatars[0]" />
 
@@ -50,8 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/userdp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
             android:text="Nushraat Jahan"
             android:textStyle="bold"
             tools:text="@tools:sample/first_names" />
@@ -77,6 +80,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="sans-serif-condensed"
             android:lineSpacingExtra="6dp"
+            android:padding="10dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
             android:textColor="@color/colorBlack" />
 
