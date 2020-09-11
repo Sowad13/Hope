@@ -1,98 +1,94 @@
 package com.example.hope;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AddingPost extends AppCompatActivity {
-
-
+public class Adding_post extends AppCompatActivity {
 
     private static final int REQUESCODE = 1;
     private static final int PReqCode = 1;
 
+    // Dialog storywriting;
 
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser ;
-    Dialog popAddPost ;
-
-    ImageView popupUserImage,popupPostImage,popupAddBtn;
+    ImageView popupUserImage;
+    ImageView addpic,addpost;
     TextView popupTitle,popupDescription;
-    ProgressBar popupClickProgress;
+    ProgressBar progressBar;
 
     private Uri pickedImgUri = null;
 
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adding_post);
+        super.onCreate( savedInstanceState );
+
+        setContentView( R.layout.activity_adding_post );
 
 
-
-        // ini
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
 
-        // ini popup
         iniPopup();
         setupPopupImageClick();
 
+      /*  fab = findViewById(R.id.fabbutton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storywriting.show();
+
+            }
+        });*/
 
     }
 
-
     private void setupPopupImageClick() {
 
-        popupPostImage.setOnClickListener(new View.OnClickListener() {
+        addpic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 checkAndRequestForPermission();
-
-
             }
-        }) ;
+        });
 
     }
 
-
-
     private void checkAndRequestForPermission() {
-
-
-        if (ContextCompat.checkSelfPermission(AddingPost.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(Adding_post.this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(AddingPost.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Adding_post.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
-                Toast.makeText(AddingPost.this,"Please accept for required permission",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Adding_post.this,"Please accept for required permission",Toast.LENGTH_SHORT).show();
 
             }
 
             else
             {
-                ActivityCompat.requestPermissions(AddingPost.this,
+                ActivityCompat.requestPermissions(Adding_post.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         PReqCode);
             }
@@ -118,43 +114,33 @@ public class AddingPost extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == REQUESCODE && data != null ) {
 
             pickedImgUri = data.getData() ;
-            popupPostImage.setImageURI(pickedImgUri);
+            addpic.setImageURI(pickedImgUri);
 
 
         }
-
-
     }
-
 
     private void iniPopup() {
 
 
-        popAddPost = new Dialog(this);
-        popAddPost.setContentView(R.layout.activity_adding_post);
-        popAddPost.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popAddPost.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT);
-        popAddPost.getWindow().getAttributes().gravity = Gravity.TOP;
+        //popupUserImage = findViewById(R.id.dp);
+        addpic = findViewById(R.id.picAdd);
+        popupTitle = findViewById(R.id.addTitle);
+        popupDescription = findViewById(R.id.addDescription);
+         addpost = findViewById(R.id.postAdd);
+        progressBar = findViewById(R.id.progress);
 
 
-        popupUserImage = popAddPost.findViewById(R.id.dp);
-        popupPostImage = popAddPost.findViewById(R.id.addImage);
-        popupTitle = popAddPost.findViewById(R.id.addTitle);
-        popupDescription = popAddPost.findViewById(R.id.addDescription);
-        popupAddBtn = popAddPost.findViewById(R.id.addPost);
-        popupClickProgress = popAddPost.findViewById(R.id.progressBar);
-
-
-         Glide.with(AddingPost.this).load(currentUser.getPhotoUrl()).into(popupUserImage);
+        //Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
 
         // Add post click Listener
 
-        popupAddBtn.setOnClickListener(new View.OnClickListener() {
+        addpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                popupAddBtn.setVisibility(View.INVISIBLE);
-                popupClickProgress.setVisibility(View.VISIBLE);
+                addpost.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
 
                 if(!popupTitle.getText().toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
@@ -169,8 +155,8 @@ public class AddingPost extends AppCompatActivity {
 
                 else{
                     showMessage("Please verify all input fields and choose Post Image") ;
-                    popupAddBtn.setVisibility(View.VISIBLE);
-                    popupClickProgress.setVisibility(View.INVISIBLE);
+                    addpost.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility( View.INVISIBLE);
 
                 }
 
@@ -178,15 +164,18 @@ public class AddingPost extends AppCompatActivity {
 
         });
 
-
     }
+
+
+
+
+
 
 
     private void showMessage(String message) {
 
-        Toast.makeText(AddingPost.this,message,Toast.LENGTH_LONG).show();
+        Toast.makeText(Adding_post.this,message, Toast.LENGTH_LONG).show();
     }
-
 
 
 }
