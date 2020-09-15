@@ -1,13 +1,13 @@
 package com.example.hope;
 
-public class Model {
+public class Modle {
 
     private String task,description,id,date;
 
-    public Model() {
+    public Modle() {
     }
 
-    public Model(String task, String description, String id, String date) {
+    public Modle(String task, String description, String id, String date) {
         this.task = task;
         this.description = description;
         this.id = id;
