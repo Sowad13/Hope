@@ -113,7 +113,7 @@ public class DailyActivity extends AppCompatActivity {
                 }
                 else if(!TextUtils.isEmpty(mTask)&&!TextUtils.isEmpty(mDescription))
                 {
-                    Model model = new Model(mTask,mDescription,id,date);
+                    Modle model = new Modle(mTask,mDescription,id,date);
                     reference.child(id).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
