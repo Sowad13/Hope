@@ -44,7 +44,8 @@ public class Adding_post extends AppCompatActivity {
 
     ImageView popupUserImage;
     ImageView addpic,addpost;
-    TextView popupDescription,popupTitle;
+    TextView popupDescription;
+    TextView feelingView;
     Spinner popupTitleSpinner;
     ProgressBar progressBar;
     String titletext;
@@ -139,6 +140,7 @@ public class Adding_post extends AppCompatActivity {
         popupDescription = findViewById(R.id.addDescription);
         addpost = findViewById(R.id.postAdd);
         progressBar = findViewById(R.id.progress);
+        feelingView = findViewById( R.id.feelingTextView );
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
         popupTitleSpinner = findViewById(R.id.addTitlespinner);
@@ -151,17 +153,10 @@ public class Adding_post extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 titletext = popupTitleSpinner.getSelectedItem().toString();
-               // if(titletext == "How are you feeling?")
-               // {
-               //     showMessage( "Please choose how are u feeling");
-               // }
-                //else{
 
-                    popupTitle.setText( titletext );
-                //}
+                 feelingView.setText( titletext );
 
-
-                // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
+                    // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -185,7 +180,7 @@ public class Adding_post extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+                if(!feelingView.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
 
                     //created post add to firebase
@@ -202,7 +197,7 @@ public class Adding_post extends AppCompatActivity {
                                     String imageDownlaodLink = uri.toString();
 
                                     detailpost detailpost = new detailpost( );
-                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setTitle( feelingView.getText().toString() );
                                     detailpost.setDescription( popupDescription.getText().toString() );
                                     detailpost.setImgUpload(imageDownlaodLink);
 
@@ -262,10 +257,10 @@ public class Adding_post extends AppCompatActivity {
 
 
                 }*/
-                else if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri == null)
+                else if(!feelingView.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri == null)
                 {
                     detailpost detailpost = new detailpost( );
-                    detailpost.setTitle( popupTitle.getText().toString() );
+                    detailpost.setTitle( feelingView.getText().toString() );
                     detailpost.setDescription( popupDescription.getText().toString() );
 
                     postAddedtoFirebase(detailpost);
