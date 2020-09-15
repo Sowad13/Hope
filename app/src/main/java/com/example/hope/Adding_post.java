@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,14 +75,6 @@ public class Adding_post extends AppCompatActivity {
         iniPopup();
         setupPopupImageClick();
 
-      /*  fab = findViewById(R.id.fabbutton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                storywriting.show();
-
-            }
-        });*/
 
     }
 
@@ -148,8 +141,6 @@ public class Adding_post extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
-
-        popupTitle = findViewById(R.id.addTitle);
         popupTitleSpinner = findViewById(R.id.addTitlespinner);
 
         ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );
@@ -198,7 +189,7 @@ public class Adding_post extends AppCompatActivity {
 
 
                     //created post add to firebase
-                   /* StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
                     final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
                     imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -210,25 +201,74 @@ public class Adding_post extends AppCompatActivity {
 
                                     String imageDownlaodLink = uri.toString();
 
-                                   // detailpost detailpost = new detailpost( 0,popupTitle.getText().toString(),popupDescription.getText().toString(),
-                                   //       user.getPhotoUrl().toString(),imageDownlaodLink);
+                                    detailpost detailpost = new detailpost( );
+                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setDescription( popupDescription.getText().toString() );
+                                    detailpost.setImgUpload(imageDownlaodLink);
 
-//                                    postAddedtoFirebase(detailpost);
+                                    postAddedtoFirebase(detailpost);
 
                                 }
                             } ).addOnFailureListener( new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
 
+                                    showMessage(e.getMessage());
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    addpost.setVisibility(View.VISIBLE);
+
                                 }
                             } );
                         }
-                    } );*/
+                    } );
 
 
                 }
-                else if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() || pickedImgUri != null)
+              /*  if(!popupTitle.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+
+
+                    //created post add to firebase
+                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                    final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
+                    imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imageFilePath.getDownloadUrl().addOnSuccessListener( new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    String imageDownlaodLink = uri.toString();
+
+                                    detailpost detailpost = new detailpost( );
+                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setImgUpload(imageDownlaodLink);
+
+                                    postAddedtoFirebase(detailpost);
+
+                                }
+                            } ).addOnFailureListener( new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    showMessage(e.getMessage());
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    addpost.setVisibility(View.VISIBLE);
+
+                                }
+                            } );
+                        }
+                    } );
+
+
+                }*/
+                else if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri == null)
                 {
+                    detailpost detailpost = new detailpost( );
+                    detailpost.setTitle( popupTitle.getText().toString() );
+                    detailpost.setDescription( popupDescription.getText().toString() );
+
+                    postAddedtoFirebase(detailpost);
 
                 }
 
@@ -246,15 +286,28 @@ public class Adding_post extends AppCompatActivity {
 
     }
 
-  //  private void postAddedtoFirebase(detailpost detailpost) {
+    private void postAddedtoFirebase(detailpost detailpost) {
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-  //      DatabaseReference databaseReference = database.getReference("Posts");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("Posts");
 
-    //    String key = databaseReference.getKey();
-      //  detailpost.setPostKey(key);
+        String key = databaseReference.push().getKey();
+        detailpost.setPostKey(key);
 
-    //}
+        databaseReference.child( key ).setValue( detailpost ).addOnSuccessListener( new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                showMessage("Post Added successfully");
+                progressBar.setVisibility(View.INVISIBLE);
+                addpost.setVisibility(View.VISIBLE);
+                finish();
+                return;
+
+            }
+        } );
+
+    }
 
 
     private void showMessage(String message) {
@@ -264,3 +317,4 @@ public class Adding_post extends AppCompatActivity {
 
 
 }
+

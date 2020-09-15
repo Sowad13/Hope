@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_1">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="186dp"
+        android:layout_below="@+id/card1"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="197dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="0dp"
         android:padding="10dp">
 
         <Button
@@ -27,13 +25,14 @@
             android:background="@drawable/cardbackground"
             android:fontFamily="serif-monospace"
             android:padding="10dp"
+            android:text="Yoga for Inner Peace: A Stress-Relieving Sequence"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:text="Yoga for Inner Peace: A Stress-Relieving Sequence"
             android:textStyle="bold|italic" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -47,8 +46,8 @@
             android:layout_height="165dp"
             android:layout_margin="10dp"
             android:background="@drawable/cardbackground"
-            android:padding="10dp"
             android:fontFamily="serif-monospace"
+            android:padding="10dp"
             android:text="Morjina lives in a rural village in Bangladesh. When she was 12 she was taken out of school to marry her 25 year old cousin.  "
             android:textAlignment="center"
             android:textSize="20dp"
@@ -57,7 +56,71 @@
 
     </androidx.cardview.widget.CardView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/card2"
+        android:layout_below="@+id/card2"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="-447dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                   >
+
+                    <Button
+                        android:id="@+id/a"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:text="Button" />
+
+                    <Button
+                        android:id="@+id/b"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:text="Button" />
+
+                    <Button
+                        android:id="@+id/c"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:text="Button" />
+
+                    <Button
+                        android:id="@+id/d"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:text="Button" />
+
+                    <Button
+                        android:id="@+id/e"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:text="Button" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </ScrollView>
+    </RelativeLayout>
+
 
 </RelativeLayout>
-
-</ScrollView>
