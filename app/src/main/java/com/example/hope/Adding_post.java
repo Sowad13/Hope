@@ -141,8 +141,6 @@ public class Adding_post extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
-
-        popupTitle = findViewById(R.id.addTitle);
         popupTitleSpinner = findViewById(R.id.addTitlespinner);
 
         ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );

@@ -4,18 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
+    android:padding="10dp"
     android:background="@color/bg_1"
     tools:context=".Adding_post">
 
-
-    <TextView
-        android:id="@+id/addTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cardbackground"
-        android:ems="10"
-        android:padding="10dp" />
 
     <Spinner
         android:id="@+id/addTitlespinner"
@@ -29,7 +21,7 @@
         android:id="@+id/addDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addTitle"
+        android:layout_below="@+id/addTitlespinner"
         android:layout_marginTop="7dp"
         android:background="@drawable/cardbackground"
         android:ems="10"
@@ -39,8 +31,8 @@
 
     <ImageView
         android:id="@+id/picAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="362dp"
+        android:layout_width="398dp"
+        android:layout_height="415dp"
         android:layout_below="@+id/addDescription"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -71,9 +63,9 @@
         android:layout_alignStart="@+id/postAdd"
         android:layout_alignEnd="@+id/postAdd"
         android:layout_alignBottom="@+id/postAdd"
-        android:layout_marginStart="-1dp"
-        android:layout_marginEnd="-1dp"
-        android:layout_marginBottom="-2dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/circle_background"
         android:visibility="invisible" />
 </RelativeLayout>

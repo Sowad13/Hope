@@ -1,4 +1,4 @@
-package com.example.hope;
+package com.example.hope.Model;
 
  public class Users {
 
@@ -9,9 +9,10 @@ package com.example.hope;
     public String username;
     public String imageURL;
 
+     public Users() {
+     }
 
-
-     public Users(int type, String username, String imageURL, int user_item) {
+     public Users( String username, String imageURL, int user_item) {
         this.id = id;
         this.username = username;
         this.imageURL = imageURL;
