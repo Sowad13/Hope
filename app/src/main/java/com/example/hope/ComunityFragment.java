@@ -1,5 +1,7 @@
 package com.example.hope;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +29,13 @@ import java.util.List;
 public class ComunityFragment extends Fragment {
 
 
-    //FirebaseDatabase database;
+    private OnFragmentInteractionListener mListener;
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
     FloatingActionButton floatingActionButton;
     RecyclerView postRecyclerview;
     post_adapter Adapterpost;
-    List<detailpost> mData;
+    List<detailpost> PostData;
     //DatabaseReference likeReference;
    // Boolean likeChecker = false;
 
@@ -54,30 +61,63 @@ public class ComunityFragment extends Fragment {
 
         postRecyclerview = v.findViewById(R.id.recycler);
         postRecyclerview.setHasFixedSize(true);
-        mData = new ArrayList<>();
+        PostData = new ArrayList<>();
 
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.itachi,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling heavy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",0,0));
-        mData.add(new detailpost(detailpost.IMAGE_TYPE,"Feeling sad","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,R.drawable.upimgtrial));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Depressed","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling down","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling good","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling thoughtful","jhgf iuhfi ieuf oij fowieufo oedjow8u eofkwoeu fom f ofijowsiejufo ioeifuiw8e o wuei wue riweyu fiwefu 9ie f8wioefj owiefu  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.IMAGE_TYPE,"Feeling Frustrated","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,R.drawable.itachi));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling lost","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.hope,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling loved","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling heavy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Stressed","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
-        mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Empty","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-
-
-        Adapterpost = new post_adapter (getContext(),mData);
-        postRecyclerview.setAdapter(Adapterpost);
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Posts");
         postRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        databaseReference.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PostData.clear();
+                List<String> keys = new ArrayList<>(  );
+
+                for(DataSnapshot keyNode : dataSnapshot.getChildren()){
+
+                    keys.add( keyNode.getKey() );
+                    detailpost detailpost = keyNode.getValue( detailpost.class );
+                    PostData.add( detailpost );
+                }
+
+                Adapterpost = new post_adapter (getContext(),PostData);
+                postRecyclerview.setAdapter(Adapterpost);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach( context );
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+
+        void onFragmentInteraction(Uri uri);
     }
 
 }

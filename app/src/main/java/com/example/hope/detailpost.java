@@ -4,14 +4,13 @@ public class detailpost {
 
     public static final int TEXT_TYPE=0;
     public static final int IMAGE_TYPE=1;
-    //public  static final int likebutton=3;
 
     public int type;
     public String title;
     public String description;
-    public int userdp;
-    public int imgUpload;            //works as imgview
-
+    public String userdp;
+    public String imgUpload;
+    private String postKey;
 
 
     public detailpost(){
@@ -19,7 +18,7 @@ public class detailpost {
     }
 
 
-    public detailpost(int type, String title,String description,int userdp,int imgUpload)
+    public detailpost(int type, String title,String description,String userdp,String imgUpload)
     {
         this.type=type;
         this.imgUpload=imgUpload;
@@ -37,11 +36,11 @@ public class detailpost {
         this.type = type;
     }
 
-    public int getImgUpload() {
+    public String getImgUpload() {
         return imgUpload;
     }
 
-    public void setImgUpload(int imgUpload) {
+    public void setImgUpload(String imgUpload) {
         this.imgUpload = imgUpload;
     }
 
@@ -61,12 +60,20 @@ public class detailpost {
         this.description = description;
     }
 
-    public int getUserdp() {
+    public String getUserdp() {
         return userdp;
     }
 
-    public void setUserdp(int userdp) {
+    public void setUserdp(String userdp) {
         this.userdp = userdp;
+    }
+
+    public void setPostKey(String postKey) {
+        this.postKey = postKey;
+    }
+
+    public String getPostKey() {
+        return postKey;
     }
 }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -83,40 +84,35 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
         if (object != null) {
             switch (object.type) {
                 case TEXT_TYPE:
-                    ((textviewpost) holder).heading.setText(object.title);
-                    ((textviewpost) holder).content.setText(object.description);
+                    ((textviewpost) holder).heading.setText(object.getTitle());
+                    ((textviewpost) holder).content.setText(object.getDescription());
 
                     //((textviewpost) holder).userprofile.setImageResource( object.userdp);
-                    Glide.with(mContext).load(mData.get(position).getUserdp()).into(((textviewpost) holder).userprofile);
+                    Glide.with(mContext).load(object.getUserdp()).into(((textviewpost) holder).userprofile);
 
-                    textviewpost.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.transitionanimation));
+                    textviewpost.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fading_animation));
 
 
 
                     break;
 
                 case IMAGE_TYPE:
-                      ((imageviewpost) holder).imgheading.setText(object.title);
+                     ((imageviewpost) holder).imgheading.setText(object.getTitle());
 
                       //  ((imageviewpost) holder).imgupload.setImageResource(object.imgUpload);
-                    Glide.with(mContext).load(mData.get(position).getImgUpload()).into(((imageviewpost) holder).picupload);
+                    Glide.with(mContext).load(object.getImgUpload()).into(((imageviewpost) holder).picupload);
 
-                    ((imageviewpost) holder).imgcontent.setText( object.description );
+                    ((imageviewpost) holder).imgcontent.setText( object.getDescription() );
 
                      // ((imageviewpost)holder).ivuserprofile.setImageResource( object.userdp );
-                    Glide.with(mContext).load(mData.get(position).getUserdp()).into(((imageviewpost) holder).ivuserprofile);
+                    Glide.with(mContext).load(object.getUserdp()).into(((imageviewpost) holder).ivuserprofile);
 
-                    imageviewpost.imgcontainer.setAnimation( AnimationUtils.loadAnimation( mContext,R.anim.transitionanimation ) );
+                    imageviewpost.imgcontainer.setAnimation( AnimationUtils.loadAnimation( mContext,R.anim.fading_animation ) );
 
                     break;
 
             }
         }
-
-
-        /*holder.title.setText(mData.get(position).getTitle());
-        Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.addimg);
-        Glide.with(mContext).load(mData.get(position).getUserPhoto()).into(holder.userimg);*/
 
     }
 
@@ -134,7 +130,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
          TextView content;
          ImageView userprofile;
      //    TextView likesnumber;
-         ImageView like;
+          ImageView like;
          static ConstraintLayout container;
 
 
@@ -146,8 +142,14 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             content = itemView.findViewById(R.id.description);
             userprofile = itemView.findViewById( R.id.profilepic);
             //likesnumber = itemView.findViewById( R.id.likescounter );
-            // like = itemView.findViewById( R.id.likebutton );
+            like = itemView.findViewById( R.id.likebutton );
+            like.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    like.setImageResource( R.drawable.redtrust );
+                }
+            } );
 
         }
     }
@@ -161,7 +163,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
         ImageView picupload;
         static RelativeLayout imgcontainer;
         static RelativeLayout imgcoverTitle;
-
+        ImageView ivlike;
 
 
         public imageviewpost(@NonNull View itemView) {
@@ -172,6 +174,13 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             imgcontent = itemView.findViewById(R.id.imgDescription);
             ivuserprofile = itemView.findViewById( R.id.userdp);
             picupload = itemView.findViewById( R.id.uploadedimg );
+            ivlike = itemView.findViewById( R.id.likebutton );
+            ivlike.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ivlike.setImageResource( R.drawable.redtrust );
+                }
+            } );
 
            // imgcoverTitle = itemView.findViewById( R.id.relativeTitle );
         }
