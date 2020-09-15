@@ -10,7 +10,7 @@
 
 
     <Spinner
-        android:id="@+id/addTitle"
+        android:id="@+id/addTitlespinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cardbackground"
@@ -21,7 +21,7 @@
         android:id="@+id/addDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addTitle"
+        android:layout_below="@+id/addTitlespinner"
         android:layout_marginTop="7dp"
         android:background="@drawable/cardbackground"
         android:ems="10"
