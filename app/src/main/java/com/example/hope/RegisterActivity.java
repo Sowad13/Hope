@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.DismissLoadingDialog();
             //Toast.makeText(RegisterActivity.this, "Enter password more than 6 word  ", Toast.LENGTH_SHORT).show();
         }
-       else if(confirm.isEmpty()||confirm!=userPassword)
+       else if(confirm.isEmpty()||!confirm.equals(userPassword))
         {
             confirmPassword.setError("Password does not match");
             loadingBar.DismissLoadingDialog();
