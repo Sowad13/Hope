@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BreathingActivity"></activity>
+        <activity android:name=".DailyActivity"></activity>
+        <activity android:name=".BreathingActivity" />
         <activity android:name=".Adding_post" />
         <activity android:name=".VideoCallActivity" />
         <activity android:name=".RegisterActivity" />
