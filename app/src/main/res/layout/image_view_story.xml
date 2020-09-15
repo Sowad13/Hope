@@ -55,7 +55,6 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="3dp"
-            android:text="Nushraat Jahan"
             android:textStyle="bold"
             tools:text="@tools:sample/first_names" />
 
@@ -64,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="17dp"
             android:layout_toEndOf="@+id/userdp"
             android:padding="8dp"
             android:text="Simple Title Text"
@@ -84,30 +83,29 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
             android:textColor="@color/colorBlack" />
 
+        <ImageView
+            android:id="@+id/ivlikebutton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_above="@+id/imgDescription"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/blanktrust" />
+
+        <TextView
+            android:id="@+id/likescounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/ivlikebutton"
+            android:text="100"
+            android:textStyle="bold|italic" />
+
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="43dp"
-        android:layout_height="43dp"
-        android:layout_alignTop="@+id/uploadedimg"
-        android:layout_alignEnd="@+id/uploadedimg"
-        android:layout_marginTop="185dp"
-        android:layout_marginEnd="48dp"
-        android:background="@drawable/blanktrust" />
-
-    <TextView
-        android:id="@+id/likescounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/uploadedimg"
-        android:layout_marginTop="205dp"
-        android:layout_marginEnd="9dp"
-        android:layout_toStartOf="@+id/button4"
-        android:textColor="@color/comunity"
-        android:text="100"
-        android:textStyle="bold|italic" />
 
 
 </RelativeLayout>

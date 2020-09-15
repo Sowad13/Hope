@@ -1,5 +1,6 @@
 package com.example.hope;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,8 +24,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Adding_post extends AppCompatActivity {
 
@@ -35,15 +44,18 @@ public class Adding_post extends AppCompatActivity {
 
     ImageView popupUserImage;
     ImageView addpic,addpost;
-    TextView popupDescription;
-    Spinner popupTitle;
+    TextView popupDescription,popupTitle;
+    Spinner popupTitleSpinner;
     ProgressBar progressBar;
+    String titletext;
 
     private Uri pickedImgUri = null;
 
 
     FirebaseAuth mAuth;
     FirebaseUser user;
+    FirebaseDatabase mData;
+    DatabaseReference mreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +67,14 @@ public class Adding_post extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        mData = FirebaseDatabase.getInstance();
+        mreference = mData.getReference();
+        String UserId = mAuth.getCurrentUser().getUid();
+
 
         iniPopup();
         setupPopupImageClick();
 
-      /*  fab = findViewById(R.id.fabbutton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                storywriting.show();
-
-            }
-        });*/
 
     }
 
@@ -128,17 +136,34 @@ public class Adding_post extends AppCompatActivity {
     private void iniPopup() {
 
 
+        popupDescription = findViewById(R.id.addDescription);
+        addpost = findViewById(R.id.postAdd);
+        progressBar = findViewById(R.id.progress);
         //popupUserImage = findViewById(R.id.dp);
         addpic = findViewById(R.id.picAdd);
+
         popupTitle = findViewById(R.id.addTitle);
+        popupTitleSpinner = findViewById(R.id.addTitlespinner);
+
         ArrayAdapter<CharSequence> spinarrayadapter = ArrayAdapter.createFromResource( this,R.array.feelings,android.R.layout.simple_spinner_item );
         spinarrayadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-        popupTitle.setAdapter( spinarrayadapter );
-        popupTitle.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+        popupTitleSpinner.setAdapter( spinarrayadapter );
+        popupTitleSpinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String titletext = parent.getItemAtPosition( position ).toString();
-               // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
+
+                titletext = popupTitleSpinner.getSelectedItem().toString();
+               // if(titletext == "How are you feeling?")
+               // {
+               //     showMessage( "Please choose how are u feeling");
+               // }
+                //else{
+
+                    popupTitle.setText( titletext );
+                //}
+
+
+                // Toast.makeText( parent.getContext(),titletext,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -147,9 +172,7 @@ public class Adding_post extends AppCompatActivity {
             }
         } );
 
-        popupDescription = findViewById(R.id.addDescription);
-        addpost = findViewById(R.id.postAdd);
-        progressBar = findViewById(R.id.progress);
+
 
 
         //Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
@@ -168,14 +191,91 @@ public class Adding_post extends AppCompatActivity {
 
 
                     //created post add to firebase
+                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                    final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
+                    imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imageFilePath.getDownloadUrl().addOnSuccessListener( new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    String imageDownlaodLink = uri.toString();
+
+                                    detailpost detailpost = new detailpost( );
+                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setDescription( popupDescription.getText().toString() );
+                                    detailpost.setImgUpload(imageDownlaodLink);
+
+                                    postAddedtoFirebase(detailpost);
+
+                                }
+                            } ).addOnFailureListener( new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    showMessage(e.getMessage());
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    addpost.setVisibility(View.VISIBLE);
+
+                                }
+                            } );
+                        }
+                    } );
 
 
+                }
+              /*  if(!popupTitle.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
+
+                    //created post add to firebase
+                    StorageReference storageReference = FirebaseStorage.getInstance( ).getReference().child( "post_images" );
+                    final StorageReference imageFilePath = storageReference.child(pickedImgUri.getLastPathSegment());
+                    imageFilePath.putFile( pickedImgUri ).addOnSuccessListener( new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imageFilePath.getDownloadUrl().addOnSuccessListener( new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    String imageDownlaodLink = uri.toString();
+
+                                    detailpost detailpost = new detailpost( );
+                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setImgUpload(imageDownlaodLink);
+
+                                    postAddedtoFirebase(detailpost);
+
+                                }
+                            } ).addOnFailureListener( new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    showMessage(e.getMessage());
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    addpost.setVisibility(View.VISIBLE);
+
+                                }
+                            } );
+                        }
+                    } );
+
+
+                }*/
+                else if(!popupTitle.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri == null)
+                {
+                    detailpost detailpost = new detailpost( );
+                    detailpost.setTitle( popupTitle.getText().toString() );
+                    detailpost.setDescription( popupDescription.getText().toString() );
+
+                    postAddedtoFirebase(detailpost);
 
                 }
 
                 else{
-                    showMessage("Please verify all input fields and choose Post Image") ;
+                    showMessage("Please verify all input fields or choose Post Image") ;
                     addpost.setVisibility(View.VISIBLE);
                     progressBar.setVisibility( View.INVISIBLE);
 
@@ -183,14 +283,33 @@ public class Adding_post extends AppCompatActivity {
 
             }
 
+
         });
 
     }
 
+    private void postAddedtoFirebase(detailpost detailpost) {
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("Posts");
 
+        String key = databaseReference.push().getKey();
+        detailpost.setPostKey(key);
 
+        databaseReference.child( key ).setValue( detailpost ).addOnSuccessListener( new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
 
+                showMessage("Post Added successfully");
+                progressBar.setVisibility(View.INVISIBLE);
+                addpost.setVisibility(View.VISIBLE);
+                finish();
+                return;
+
+            }
+        } );
+
+    }
 
 
     private void showMessage(String message) {
@@ -200,3 +319,4 @@ public class Adding_post extends AppCompatActivity {
 
 
 }
+

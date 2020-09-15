@@ -25,7 +25,7 @@
         android:layout_marginTop="7dp"
         android:background="@drawable/cardbackground"
         android:ems="10"
-        android:hint="Description"
+        android:hint="Tell us your thoughts"
         android:inputType="textMultiLine"
         android:padding="10dp" />
 
