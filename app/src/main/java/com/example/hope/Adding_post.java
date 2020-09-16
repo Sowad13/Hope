@@ -200,6 +200,7 @@ public class Adding_post extends AppCompatActivity {
                                     detailpost.setTitle( feelingView.getText().toString() );
                                     detailpost.setDescription( popupDescription.getText().toString() );
                                     detailpost.setImgUpload(imageDownlaodLink);
+                                    detailpost.setType( 1 );
 
                                     postAddedtoFirebase(detailpost);
 
@@ -219,7 +220,7 @@ public class Adding_post extends AppCompatActivity {
 
 
                 }
-              /*  if(!popupTitle.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+                if(!feelingView.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
 
                     //created post add to firebase
@@ -236,8 +237,9 @@ public class Adding_post extends AppCompatActivity {
                                     String imageDownlaodLink = uri.toString();
 
                                     detailpost detailpost = new detailpost( );
-                                    detailpost.setTitle( popupTitle.getText().toString() );
+                                    detailpost.setTitle( feelingView.getText().toString() );
                                     detailpost.setImgUpload(imageDownlaodLink);
+                                    detailpost.setType( 1 );
 
                                     postAddedtoFirebase(detailpost);
 
@@ -256,12 +258,13 @@ public class Adding_post extends AppCompatActivity {
                     } );
 
 
-                }*/
+                }
                 else if(!feelingView.toString().isEmpty() && !popupDescription.getText().toString().isEmpty() && pickedImgUri == null)
                 {
                     detailpost detailpost = new detailpost( );
                     detailpost.setTitle( feelingView.getText().toString() );
                     detailpost.setDescription( popupDescription.getText().toString() );
+                    detailpost.setType( 0);
 
                     postAddedtoFirebase(detailpost);
 

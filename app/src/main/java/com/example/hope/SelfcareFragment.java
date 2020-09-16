@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 public class SelfcareFragment extends Fragment {
 
 
-    Button storybutton,yogabutton;
+    Button storybutton,twostorybutton,s,t,u,v,w;
 
     @Nullable
     @Override
@@ -31,11 +31,21 @@ public class SelfcareFragment extends Fragment {
             }
         } );
 
-        yogabutton = v.findViewById( R.id.yogabutton );
-        yogabutton.setOnClickListener( new View.OnClickListener() {
+        twostorybutton = v.findViewById( R.id.onebutton );
+        twostorybutton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 website( "https://www.yogajournal.com/practice/yoga-for-inner-peace-stress-relief-daily-practice-challenge#gid=ci0207569e402525bd&pid=colleen-saidman-yee-performs-savasana-with-blocks-on-head" );
+            }
+        } );
+
+        s = v.findViewById( R.id.a );
+        s.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
             }
         } );
 
