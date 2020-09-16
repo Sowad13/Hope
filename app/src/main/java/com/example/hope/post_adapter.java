@@ -175,12 +175,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             ivuserprofile = itemView.findViewById( R.id.userdp);
             picupload = itemView.findViewById( R.id.uploadedimg );
             ivlike = itemView.findViewById( R.id.likebutton );
-            ivlike.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ivlike.setImageResource( R.drawable.redtrust );
-                }
-            } );
+
 
            // imgcoverTitle = itemView.findViewById( R.id.relativeTitle );
         }
