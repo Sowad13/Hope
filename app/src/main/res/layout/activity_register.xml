@@ -136,6 +136,25 @@
         android:elevation="5dp"
         />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="140dp"
+        app:cardCornerRadius="150dp">
+
+        <ImageButton
+            android:id="@+id/regDP"
+            android:layout_width="142dp"
+            android:layout_height="151dp"
+            android:background="#ffffff"
+            android:src="@drawable/avatar1" />
+
+
+    </androidx.cardview.widget.CardView>
+
 
 
 

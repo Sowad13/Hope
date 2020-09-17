@@ -1,5 +1,7 @@
 package com.example.hope;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hope.Adapter.UserAdapter;
 import com.example.hope.Model.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,15 +23,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsersFragment extends Fragment {
 
-
+    //private OnRegisterInteractionListener mRegister;
     private RecyclerView recyclerView;
 
-    private  UserAdapter userAdapter;
+    private UserAdapter userAdapter;
 
     private List<Users> mUsers;
 
@@ -36,24 +40,13 @@ public class UsersFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_users,container,false);
-
-
-
-
-        mUsers = new ArrayList<Users>();
-
-
-        //mUsers.add(new Users("Nushraat",R.mipmap.ic_launcher,R.layout.user_item));
-        //mUsers.add(new Users("Sowad",R.mipmap.smallpanda,R.layout.user_item));
-        //mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling heavy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.owlf,0));
-        //mData.add(new detailpost(detailpost.TEXT_TYPE,"Feeling Happy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",R.drawable.creat,0));
+        View view = inflater.inflate(R.layout.fragment_users, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_users);
         recyclerView.setHasFixedSize(true);
-        userAdapter = new UserAdapter(getContext(), mUsers);
-        recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mUsers = new ArrayList<>();
 
         //readUsers();
 
@@ -61,28 +54,30 @@ public class UsersFragment extends Fragment {
 
     }
 
-    private void readUsers() {
+    @Override
+    public void onStart() {
+        super.onStart();
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Users user = snapshot.getValue(Users.class);
+
 
                     assert user != null;
                     assert firebaseUser != null;
-                    if (user.getUsername().equals(firebaseUser.getDisplayName())){
+                    if (user.getId().equals(firebaseUser.getUid())) {
                         mUsers.add(user);
                     }
                 }
 
                 userAdapter = new UserAdapter(getContext(), mUsers);
                 recyclerView.setAdapter(userAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             }
 
             @Override
@@ -90,9 +85,41 @@ public class UsersFragment extends Fragment {
 
             }
         });
-
     }
 }
+
+
+           /* @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }*/
+
+    /*public void onButtonPressed(Uri uri) {
+        if (mRegister != null) {
+            mRegister.onRegisterInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach( context );
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mRegister = null;
+    }
+
+    public interface OnRegisterInteractionListener {
+
+        void onRegisterInteraction(Uri uri);
+    }
+}*/
 
 
 
