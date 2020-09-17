@@ -145,6 +145,19 @@ public class DailyActivity extends AppCompatActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
+            switch(direction)
+            {
+                case ItemTouchHelper.LEFT:
+
+                    break;
+
+                case ItemTouchHelper.RIGHT:
+                    CongoDialog();
+
+                    break;
+            }
+
+
         }
     };
 
@@ -244,7 +257,17 @@ public class DailyActivity extends AppCompatActivity {
     }
 
 
+void CongoDialog()
+{
 
+    AlertDialog.Builder builder = new AlertDialog.Builder(DailyActivity.this);
+    LayoutInflater inflater = LayoutInflater.from(DailyActivity.this);
+    View view = inflater.inflate(R.layout.congratulation_dialog, null);
+    builder.setView(view);
+    AlertDialog dialog = builder.create();
+    dialog.show();
+
+}
 
 
 
