@@ -1,6 +1,7 @@
 package com.example.hope;
 
 
+import android.graphics.Canvas;
 import android.icu.text.DateFormat;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,20 +37,27 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 public class DailyActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
-
+    FirebaseRecyclerAdapter<Modle,DailyTaskViewHolder> adapter;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference reference;
     String onlineUserId;
+    String key;
+   int pos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
+
+
 
         recyclerView = findViewById(R.id.recyclerview);
         floatingActionButton = findViewById(R.id.fab);
@@ -87,7 +96,7 @@ public class DailyActivity extends AppCompatActivity {
                 .setQuery(reference,Modle.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Modle,DailyTaskViewHolder> adapter = new FirebaseRecyclerAdapter<Modle, DailyTaskViewHolder>(firebaseRecyclerOptions) {
+       adapter = new FirebaseRecyclerAdapter<Modle, DailyTaskViewHolder>(firebaseRecyclerOptions) {
             @Override
             protected void onBindViewHolder(@NonNull DailyTaskViewHolder holder, int position, @NonNull final Modle model) {
 
@@ -111,12 +120,19 @@ public class DailyActivity extends AppCompatActivity {
 
 
 
+
                     }
                 });
+
+                key = getRef(position).getKey();
+
+                pos = position;
+
 
 
 
             }
+
 
             @NonNull
             @Override
@@ -134,6 +150,8 @@ public class DailyActivity extends AppCompatActivity {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+
+
     }
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
@@ -145,19 +163,44 @@ public class DailyActivity extends AppCompatActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
+
+
+            int p = viewHolder.getPosition();
+
+
             switch(direction)
             {
                 case ItemTouchHelper.LEFT:
 
+                    EditTask();
+                    Toast.makeText(DailyActivity.this,Integer.toString(pos),Toast.LENGTH_SHORT).show();
+
+
+
                     break;
 
                 case ItemTouchHelper.RIGHT:
+                    Toast.makeText(DailyActivity.this,Integer.toString(pos),Toast.LENGTH_SHORT).show();
+
                     CongoDialog();
 
                     break;
             }
 
 
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(DailyActivity.this,R.color.colorPrimary))
+                    .addSwipeRightActionIcon(R.drawable.ic_done_all_black_24dp)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(DailyActivity.this,R.color.self))
+                    .addSwipeLeftActionIcon(R.drawable.ic_mode_edit_black_24dp)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
 
@@ -202,6 +245,7 @@ public class DailyActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
+
                                  bottomSheetDialog.dismiss();
                                 Toast.makeText(DailyActivity.this,"Your Task is added",Toast.LENGTH_SHORT).show();
                             }
@@ -269,6 +313,90 @@ void CongoDialog()
 
 }
 
+void EditTask()
+{
+
+    
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(DailyActivity.this);
+    LayoutInflater inflater = LayoutInflater.from(DailyActivity.this);
+    View view = inflater.inflate(R.layout.update_dailytask,null);
+
+
+    builder.setView(view);
+    final AlertDialog dialog = builder.create();
+
+
+    final EditText titleedit = view.findViewById(R.id.edit_title);
+    final EditText desedit = view.findViewById(R.id.edit_description);
+    Button cancel = view.findViewById(R.id.c_butn);
+    Button save = view.findViewById(R.id.edit_button);
+
+
+
+
+    save.setOnClickListener(new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        public void onClick(View v) {
+
+
+            String mTask = titleedit.getText().toString().trim();
+            String mDescription= desedit.getText().toString().trim();
+            String date = DateFormat.getDateInstance().format(new Date());
+
+
+
+            if(TextUtils.isEmpty(mTask))
+            {
+                titleedit.setError("Need to fill up");
+            }
+            if(TextUtils.isEmpty(mDescription))
+            {
+                desedit.setError("Need to fill up");
+            }
+            else if(!TextUtils.isEmpty(mTask)&&!TextUtils.isEmpty(mDescription))
+            {
+
+
+                Modle model = new Modle(mTask,mDescription,key,date);
+                reference.child(key).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            adapter.notifyItemChanged(pos);
+                            dialog.dismiss();
+                            Toast.makeText(DailyActivity.this,"Your Task is added",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+
+
+            }
+
+
+
+
+
+        }
+    });
+
+    cancel.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            dialog.dismiss();
+
+        }
+    });
+
+    dialog.show();
+    dialog.setCancelable(false);
+
+}
 
 
 }
