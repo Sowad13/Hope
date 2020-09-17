@@ -12,9 +12,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,16 +27,20 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText email, password,confirmPassword;
+    EditText userName,email, password,confirmPassword;
+    ImageButton profileImage;
     Button registerButton;
     FirebaseAuth mAuth;
     CustomLoadingBar loadingBar;
    DatabaseReference UserRef;
    ImageView visibility,visibility2;
+   FirebaseUser firebaseUser;
+
 
    int visible = 0,visible2 = 0;
     @Override
@@ -43,6 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        userName = findViewById(R.id.registerusername);
+        profileImage = findViewById(R.id.regDP);
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerpassword);
         registerButton = findViewById(R.id.registerbutton);
@@ -50,6 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.register_confirm_password);
         visibility = findViewById(R.id.visibility);
         visibility2 = findViewById(R.id.visibility_2);
+
+        //Glide.with(RegisterActivity.this).load(firebaseUser.getPhotoUrl()).into(profileImage);
         loadingBar = new CustomLoadingBar(RegisterActivity.this);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void RegisterNewUser() {
 
+
+        final String username = userName.getText().toString();
         String userPassword = password.getText().toString();
         String userEmail = email.getText().toString();
         String confirm = confirmPassword.getText().toString();
@@ -135,20 +147,35 @@ public class RegisterActivity extends AppCompatActivity {
                         loadingBar.DismissLoadingDialog();
 
 
-                        final FirebaseUser user = mAuth.getCurrentUser();
-                        final  String UserId = mAuth.getCurrentUser().getUid();
+                         final FirebaseUser user = mAuth.getCurrentUser();
+
 
                         user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                UserRef.child("Users").child(UserId).setValue("");
-                                Toast.makeText(RegisterActivity.this, "Verification has sent", Toast.LENGTH_SHORT).show();
-                                    mAuth.signOut();
-                                    Intent intent = new Intent(RegisterActivity.this, secondpage.class);
-                                    startActivity(intent);
-                                    finish();
+                                String UserId = user.getUid();
+                                UserRef = FirebaseDatabase.getInstance().getReference("Users").child(UserId);
 
+                                HashMap<String, String> hashmap = new HashMap<>();
+                                hashmap.put("id", UserId);
+                                hashmap.put("username", username);
+                                hashmap.put("imageURL","default");
+
+                                UserRef.setValue(hashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                       if (task.isSuccessful()){
+
+                                           Toast.makeText(RegisterActivity.this, "Verification has sent", Toast.LENGTH_SHORT).show();
+                                           mAuth.signOut();
+                                           Intent intent = new Intent(RegisterActivity.this, secondpage.class);
+                                           startActivity(intent);
+                                           finish();
+
+                                       }
+                                    }
+                                });
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
