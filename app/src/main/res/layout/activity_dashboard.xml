@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="	#70D3E1"
+        android:background="@color/button_color"
         >
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_more_vert_black_24dp"
-            android:background="	#70D3E1"
+            android:background="@color/button_color"
             android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
              />

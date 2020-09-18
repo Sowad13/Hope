@@ -109,7 +109,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
                     ((textviewpost)holder).like.setOnClickListener( new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(((textviewpost)holder).like.getTag().equals("Liked")) {
+                            if(((textviewpost)holder).like.getTag().equals("Like")) {
                                 FirebaseDatabase.getInstance().getReference().child("Likes").child( object.getPostKey() ).child( firebaseUser.getUid() ).setValue( true );
                                 Toast.makeText(mContext,"post liked", Toast.LENGTH_LONG).show();
 
@@ -139,7 +139,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
                     ((imageviewpost)holder).ivlike.setOnClickListener( new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(((imageviewpost)holder).ivlike.getTag().equals("Liked")) {
+                            if(((imageviewpost)holder).ivlike.getTag().equals("Like")) {
                                 FirebaseDatabase.getInstance().getReference().child("Likes").child( object.getPostKey() ).child( firebaseUser.getUid() ).setValue( true );
 
                             }
