@@ -12,8 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class SelfcareFragment extends Fragment {
 
+    DatabaseReference websitereference;
+    String linkone,linktwo;
 
     Button storybutton,twostorybutton,s,t,u,v,w;
 
@@ -22,20 +30,36 @@ public class SelfcareFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_selfcare,container,false);
 
+        websitereference = FirebaseDatabase.getInstance().getReference();
+
         storybutton =v.findViewById( R.id.newsbutton );
-        storybutton.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                website("https://www.add.org.uk/mental-health-story");
-            }
-        } );
-
         twostorybutton = v.findViewById( R.id.onebutton );
-        twostorybutton.setOnClickListener( new View.OnClickListener() {
+
+        websitereference.addValueEventListener( new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                website( "https://www.yogajournal.com/practice/yoga-for-inner-peace-stress-relief-daily-practice-challenge#gid=ci0207569e402525bd&pid=colleen-saidman-yee-performs-savasana-with-blocks-on-head" );
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                linkone = dataSnapshot.child("websites").child( "linkOne" ).getValue().toString();
+                storybutton.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        website(linkone);
+                    }
+                } );
+
+                linktwo = dataSnapshot.child("websites").child( "linkTwo" ).getValue().toString();
+                twostorybutton.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        website(  linktwo);
+                    }
+                } );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         } );
 

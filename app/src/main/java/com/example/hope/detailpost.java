@@ -9,8 +9,10 @@ public class detailpost {
     public String title;
     public String description;
     public String userdp;
+    public String usernam;
+    public String userid;
     public String imgUpload;
-    private String postKey;
+    public String postKey;
 
 
     public detailpost(){
@@ -18,14 +20,33 @@ public class detailpost {
     }
 
 
-    public detailpost(int type, String title,String description,String userdp,String imgUpload)
+    public detailpost(int type, String title,String description,String userdp, String userid,  String usernam, String imgUpload,String postKey)
     {
         this.type=type;
         this.imgUpload=imgUpload;
         this.title=title;
         this.description = description;
         this.userdp = userdp;
+        this.userid = userid;
+        this.usernam = usernam;
+        this.postKey = postKey;
 
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getUsernam() {
+        return usernam;
+    }
+
+    public void setUsernam(String usernam) {
+        this.usernam = usernam;
     }
 
     public int getType() {
@@ -72,7 +93,7 @@ public class detailpost {
         this.postKey = postKey;
     }
 
-    public String getPostKey() {
+    public  String getPostKey() {
         return postKey;
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/groupo"
+    <item android:drawable="@drawable/bridgepose"
         android:duration="3000"/>
 
-    <item android:drawable="@drawable/groupf"
+    <item android:drawable="@drawable/butterflypose"
         android:duration="3000"/>
 
-    <item android:drawable="@drawable/groupt"
+    <item android:drawable="@drawable/camelpose"
         android:duration="3000"/>
 
 </animation-list>

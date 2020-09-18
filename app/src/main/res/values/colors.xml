@@ -29,6 +29,7 @@
 
     <color name="white">#ffffff</color>
 
-//#d5ded1
+    <color name="yogabutton">#9AC5ED</color>
+    <color name="linkbutton">#ED9AA3</color>
 
 </resources>
