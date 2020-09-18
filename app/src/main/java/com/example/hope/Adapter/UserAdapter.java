@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.hope.Model.Users;
 import com.example.hope.R;
+import com.example.hope.UserChatActivity;
 import com.example.hope.registerUser;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
 
-        Users user = mUsers.get(position);
+        final Users user = mUsers.get(position);
         holder.username.setText(user.getUsername());
 
         if(user.getImageURL().equals("default")){
@@ -52,6 +53,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, UserChatActivity.class);
+                intent.putExtra("userid", user.getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
