@@ -100,6 +100,7 @@ public class DailyActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull DailyTaskViewHolder holder, int position, @NonNull final Modle model) {
 
+
                 holder.setDate(model.getDate());
                 holder.setTitl(model.getTask());
 
@@ -124,9 +125,6 @@ public class DailyActivity extends AppCompatActivity {
                     }
                 });
 
-                key = getRef(position).getKey();
-
-                pos = position;
 
 
 
@@ -165,7 +163,9 @@ public class DailyActivity extends AppCompatActivity {
 
 
 
-            int p = viewHolder.getPosition();
+             pos = viewHolder.getAdapterPosition();
+
+            key = adapter.getRef(pos).getKey();
 
 
             switch(direction)
@@ -173,15 +173,17 @@ public class DailyActivity extends AppCompatActivity {
                 case ItemTouchHelper.LEFT:
 
                     EditTask();
-                    Toast.makeText(DailyActivity.this,Integer.toString(pos),Toast.LENGTH_SHORT).show();
+
 
 
 
                     break;
 
                 case ItemTouchHelper.RIGHT:
-                    Toast.makeText(DailyActivity.this,Integer.toString(pos),Toast.LENGTH_SHORT).show();
 
+
+                    TaskDone();
+                    
                     CongoDialog();
 
                     break;
@@ -316,7 +318,7 @@ void CongoDialog()
 void EditTask()
 {
 
-    
+
 
     AlertDialog.Builder builder = new AlertDialog.Builder(DailyActivity.this);
     LayoutInflater inflater = LayoutInflater.from(DailyActivity.this);
@@ -398,5 +400,10 @@ void EditTask()
 
 }
 
+
+void TaskDone()
+{
+    reference.child(key).removeValue();
+}
 
 }
