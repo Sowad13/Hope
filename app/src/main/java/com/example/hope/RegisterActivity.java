@@ -125,14 +125,19 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.DismissLoadingDialog();
             // Toast.makeText(RegisterActivity.this, "Enter your email", Toast.LENGTH_SHORT).show();
         }
-       else if (userPassword.length() < 6) {
+        if (userPassword.length() < 6) {
             password.setError("Password length should be more than 6");
             loadingBar.DismissLoadingDialog();
             //Toast.makeText(RegisterActivity.this, "Enter password more than 6 word  ", Toast.LENGTH_SHORT).show();
         }
-       else if(confirm.isEmpty()||!confirm.equals(userPassword))
+        if(confirm.isEmpty()||!confirm.equals(userPassword))
         {
             confirmPassword.setError("Password does not match");
+            loadingBar.DismissLoadingDialog();
+        }
+        if(username.isEmpty())
+        {
+            userName.setError("Enter your name");
             loadingBar.DismissLoadingDialog();
         }
        else {
