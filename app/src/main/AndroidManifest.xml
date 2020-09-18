@@ -22,6 +22,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".first_yoga"></activity>
         <activity android:name=".DailyActivity" />
+        <activity android:name=".UserChatActivity" />
         <activity android:name=".BreathingActivity" />
         <activity android:name=".Adding_post" />
         <activity android:name=".VideoCallActivity" />

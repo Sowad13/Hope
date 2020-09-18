@@ -8,13 +8,18 @@
     android:background="@color/bg_1"
     >
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/msg_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:layout_above="@+id/linearlayout"
-
+        android:layout_below="@+id/msg_toolbar"
         />
 
     <LinearLayout

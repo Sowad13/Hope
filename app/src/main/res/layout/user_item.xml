@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_toEndOf="@id/profile_image"
         android:layout_toRightOf="@id/profile_image"
         android:layout_marginLeft="15dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_centerVertical="true"/>
 
 </RelativeLayout>
