@@ -15,11 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,13 +37,16 @@ public class ComunityFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+
     FloatingActionButton floatingActionButton;
     RecyclerView postRecyclerview;
     post_adapter Adapterpost;
     List<detailpost> PostData;
-    //DatabaseReference likeReference;
-   // Boolean likeChecker = false;
-
+    DatabaseReference likeReference;
+    Boolean likeChecker = false;
+    String UserId;
 
 
     @Nullable
@@ -59,19 +67,30 @@ public class ComunityFragment extends Fragment {
         });
 
 
+
+
         postRecyclerview = v.findViewById(R.id.recycler);
         postRecyclerview.setHasFixedSize(true);
         PostData = new ArrayList<>();
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        UserId = user.getUid();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("Posts");
         postRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //likeReference = database.getReference("Likes");
+       // final String postlikekey = getReference
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+
+
 
         databaseReference.addValueEventListener( new ValueEventListener() {
             @Override
@@ -95,6 +114,8 @@ public class ComunityFragment extends Fragment {
 
             }
         } );
+
+
     }
 
     public void onButtonPressed(Uri uri) {

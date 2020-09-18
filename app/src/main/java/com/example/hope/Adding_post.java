@@ -48,7 +48,7 @@ public class Adding_post extends AppCompatActivity {
     TextView feelingView;
     Spinner popupTitleSpinner;
     ProgressBar progressBar;
-    String titletext;
+    String titletext,UserId;
 
     private Uri pickedImgUri = null;
 
@@ -70,7 +70,7 @@ public class Adding_post extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance();
         mreference = mData.getReference();
-        String UserId = mAuth.getCurrentUser().getUid();
+         UserId = user.getUid();
 
 
         iniPopup();
@@ -168,7 +168,7 @@ public class Adding_post extends AppCompatActivity {
 
 
 
-        //Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
+      //  Glide.with(Adding_post.this).load(user.getPhotoUrl()).into(popupUserImage);
 
         // Add post click Listener
 
@@ -199,6 +199,7 @@ public class Adding_post extends AppCompatActivity {
                                     detailpost detailpost = new detailpost( );
                                     detailpost.setTitle( feelingView.getText().toString() );
                                     detailpost.setDescription( popupDescription.getText().toString() );
+                                    detailpost.setUserid(UserId);
                                     detailpost.setImgUpload(imageDownlaodLink);
                                     detailpost.setType( 1 );
 
@@ -220,7 +221,7 @@ public class Adding_post extends AppCompatActivity {
 
 
                 }
-                if(!feelingView.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
+                else if(!feelingView.toString().isEmpty() &&  popupDescription.getText().toString().isEmpty() && pickedImgUri != null) {
 
 
                     //created post add to firebase
@@ -240,6 +241,7 @@ public class Adding_post extends AppCompatActivity {
                                     detailpost.setTitle( feelingView.getText().toString() );
                                     detailpost.setImgUpload(imageDownlaodLink);
                                     detailpost.setType( 1 );
+                                    detailpost.setUserid(UserId);
 
                                     postAddedtoFirebase(detailpost);
 
@@ -265,6 +267,7 @@ public class Adding_post extends AppCompatActivity {
                     detailpost.setTitle( feelingView.getText().toString() );
                     detailpost.setDescription( popupDescription.getText().toString() );
                     detailpost.setType( 0);
+                    detailpost.setUserid(UserId);
 
                     postAddedtoFirebase(detailpost);
 
