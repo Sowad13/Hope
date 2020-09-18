@@ -183,7 +183,7 @@ public class DailyActivity extends AppCompatActivity {
 
 
                     TaskDone();
-                    
+
                     CongoDialog();
 
                     break;
