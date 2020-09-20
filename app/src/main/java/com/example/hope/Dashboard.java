@@ -1,5 +1,6 @@
 package com.example.hope;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -18,9 +19,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class Dashboard extends AppCompatActivity  {
 
@@ -32,6 +37,7 @@ public class Dashboard extends AppCompatActivity  {
     CustomLoadingBar loadingBar;
     TextView DisplayName;
     DatabaseReference ref;
+    RoundedImageView DisplayUserImage;
 
 
 
@@ -48,6 +54,10 @@ public class Dashboard extends AppCompatActivity  {
         loadingBar = new CustomLoadingBar(Dashboard.this);
         DisplayName = findViewById(R.id.diplay_name_txt);
         ref = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+
+        //Nusraat or sowad use this variable to display user image on dashboard
+        // DO the code on onStart method
+        DisplayUserImage = findViewById(R.id.user_image);
 
 
 
@@ -157,6 +167,29 @@ public class Dashboard extends AppCompatActivity  {
     protected void onStart() {
         super.onStart();
 
-        DisplayName.setText(ref.child("username").getKey());
+       ref.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+               if(dataSnapshot.hasChild("username"))
+               {
+                   DisplayName.setText("Hi, "+dataSnapshot.child("username").getValue());
+               }
+
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+
+
+
+
+       //Display image 
+
+
+
     }
 }

@@ -30,7 +30,7 @@
             android:layout_marginStart="30dp"
             android:layout_toEndOf="@+id/user_image"
             android:layout_centerVertical="true"
-            android:text="Hi"
+            android:text="Welcome to HOPE"
             android:textColor="#ffff"
             android:textSize="18sp"
             android:textStyle="bold" />
