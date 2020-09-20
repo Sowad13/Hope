@@ -187,7 +187,7 @@ public class Dashboard extends AppCompatActivity  {
 
 
 
-       //Display image 
+       //Display image
 
 
 
