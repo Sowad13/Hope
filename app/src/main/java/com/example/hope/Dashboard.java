@@ -2,18 +2,24 @@ package com.example.hope;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class Dashboard extends AppCompatActivity  {
@@ -24,10 +30,12 @@ public class Dashboard extends AppCompatActivity  {
     ChipNavigationBar bottomNavigationView ;
     ImageButton menubtn;
     CustomLoadingBar loadingBar;
+    TextView DisplayName;
+    DatabaseReference ref;
 
 
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
@@ -38,6 +46,12 @@ public class Dashboard extends AppCompatActivity  {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         menubtn = findViewById(R.id.menu_button);
         loadingBar = new CustomLoadingBar(Dashboard.this);
+        DisplayName = findViewById(R.id.diplay_name_txt);
+        ref = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+
+
+
+
 
 
 
@@ -139,5 +153,10 @@ public class Dashboard extends AppCompatActivity  {
         }
     };
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        DisplayName.setText(ref.child("username").getKey());
+    }
 }
