@@ -15,7 +15,7 @@
         android:id="@+id/RL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="10dp"
         android:background="@drawable/cardbackground"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +98,18 @@
             android:textStyle="bold|italic" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/updateTextpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/RL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintVertical_bias="0.09"
+        app:srcCompat="@drawable/editbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

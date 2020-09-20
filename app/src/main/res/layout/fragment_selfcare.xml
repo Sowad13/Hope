@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/scrollview"
         android:layout_marginTop="15dp"
+        android:background="@drawable/scroll_circlebg"
         >
 
         <LinearLayout
@@ -156,9 +157,12 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="-50dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="cursive"
         android:padding="10dp"
-        android:text="Practice Yoga to keep your mind and body healthy"
+        android:text="Practice Yoga daily for a sound mind and  physical well being"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#090808"
         android:textSize="18sp"
         android:textStyle="bold|italic" />
 
@@ -182,11 +186,13 @@
                     android:id="@+id/a"
                     android:layout_width="150dp"
                     android:layout_height="155dp"
+                    android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/scroll_circlebg"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:padding="10dp"
-                    android:layout_gravity="center"
-                    android:text="Yoga for stress relief" />
+                    android:text="Yoga for stress relief"
+                    android:textAllCaps="true" />
 
 
                 <Button

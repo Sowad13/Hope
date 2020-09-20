@@ -1,14 +1,17 @@
 package com.example.hope;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +35,7 @@ import java.util.List;
 
 import static com.example.hope.detailpost.IMAGE_TYPE;
 import static com.example.hope.detailpost.TEXT_TYPE;
+import static org.webrtc.ContextUtils.getApplicationContext;
 
 public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder>{
 
@@ -41,7 +46,9 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
     private int i;
     ConstraintLayout container;
     RelativeLayout imgcontainer;
-    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();;
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
     public post_adapter(Context mContext, List<detailpost> mData) {
         this.mContext = mContext;
@@ -103,6 +110,57 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
 
                     container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fading_animation));
 
+                    if (firebaseUser.getUid() == object.getUserid()) {
+
+                        ((textviewpost)holder).updatepostText.setVisibility(View.VISIBLE);
+
+                        ((textviewpost) holder).updatepostText.setOnClickListener( new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PopupMenu popup = new PopupMenu( mContext, v );
+                                popup.inflate( R.menu.edit_post_menu );
+                                popup.show();
+
+                                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem item) {
+
+                                        switch (item.getItemId()) {
+                                            case R.id.editpostbutton:
+                                                Intent intent = new Intent( mContext, Post_edit.class );
+                                                intent.putExtra( "title", ((textviewpost) holder).heading.getText().toString() );
+                                                intent.putExtra( "description", ((textviewpost) holder).content.getText().toString() );
+                                                intent.putExtra( "key", object.getPostKey() );
+                                                mContext.startActivity( intent );
+
+                                                return true;
+                                            case R.id.deletepostbutton:
+
+                                                String postkey = object.getPostKey();
+                                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                                DatabaseReference databaseReference = database.getReference( "Posts" );
+                                                databaseReference.child( postkey ).setValue( null ).addOnSuccessListener( new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+
+                                                        Toast.makeText( mContext, "post deleted", Toast.LENGTH_LONG ).show();
+                                                    }
+                                                } );
+
+                                                return true;
+
+                                        }
+                                        return false;
+                                    }
+                                } );
+
+                            }
+                        } );
+                    }
+                    else {
+                        ((textviewpost)holder).updatepostText.setVisibility( View.INVISIBLE );
+                    }
+
                     setlikeButton( object.getPostKey() ,((textviewpost)holder).like );
                     setlikecounter( ((textviewpost)holder).likesnumber,object.getPostKey() );
 
@@ -132,6 +190,59 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
                     Glide.with(mContext).load(object.getUserdp()).into(((imageviewpost) holder).ivuserprofile);
 
                     imgcontainer.setAnimation( AnimationUtils.loadAnimation( mContext,R.anim.fading_animation ) );
+                    if (firebaseUser.getUid()==object.getUserid()) {
+
+                        ((imageviewpost)holder).updatepostImageview.setVisibility( View.VISIBLE );
+
+                        ((imageviewpost) holder).updatepostImageview.setOnClickListener( new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PopupMenu popup = new PopupMenu( mContext, v );
+                                popup.inflate( R.menu.edit_post_menu );
+                                popup.show();
+
+                                popup.setOnMenuItemClickListener( new PopupMenu.OnMenuItemClickListener() {
+                                    @Override
+                                    public boolean onMenuItemClick(MenuItem item) {
+
+                                        switch (item.getItemId()) {
+                                            case R.id.editpostbutton:
+                                                Intent intent = new Intent( mContext, Post_edit.class );
+
+                                                intent.putExtra( "title", ((imageviewpost) holder).imgheading.getText().toString() );
+                                                intent.putExtra( "description", ((imageviewpost) holder).imgcontent.getText().toString() );
+                                                intent.putExtra( "image", object.getImgUpload() );
+                                                intent.putExtra( "key", object.getPostKey() );
+                                                mContext.startActivity( intent );
+
+                                                return true;
+                                            case R.id.deletepostbutton:
+                                                String postkey = object.getPostKey();
+                                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                                DatabaseReference databaseReference = database.getReference( "Posts" );
+                                                databaseReference.child( postkey ).setValue( null ).addOnSuccessListener( new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+
+                                                        Toast.makeText( mContext, "post deleted", Toast.LENGTH_LONG ).show();
+                                                    }
+                                                } );
+
+
+                                                return true;
+
+                                        }
+                                        return false;
+                                    }
+                                } );
+
+                            }
+                        } );
+                    }
+                    else {
+
+                        ((imageviewpost)holder).updatepostImageview.setVisibility( View.INVISIBLE );
+                    }
 
                     setlikeButton( object.getPostKey() ,((imageviewpost)holder).ivlike );
                     setlikecounter( ((imageviewpost)holder).ivlikenumber,object.getPostKey() );
@@ -171,7 +282,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
          TextView userName;
          ImageView userprofile;
          TextView likesnumber;
-         ImageView like;
+         ImageView like,updatepostText;
 
 
 
@@ -185,6 +296,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             userName = itemView.findViewById( R.id.nameuser );
             likesnumber = itemView.findViewById( R.id.likescounter );
             like = itemView.findViewById( R.id.likebutton );
+            updatepostText = itemView.findViewById( R.id.updateTextpost );
 
         }
     }
@@ -197,7 +309,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
         ImageView ivuserprofile;
         ImageView picupload;
         RelativeLayout imgcoverTitle;
-        ImageView ivlike;
+        ImageView ivlike,updatepostImageview;
         TextView ivlikenumber;
 
 
@@ -212,7 +324,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             picupload = itemView.findViewById( R.id.uploadedimg );
             ivlike = itemView.findViewById( R.id.ivlikebutton );
             ivlikenumber = itemView.findViewById( R.id.likesnum );
-
+            updatepostImageview = itemView.findViewById( R.id.updatepost );
            // imgcoverTitle = itemView.findViewById( R.id.relativeTitle );
 
         }

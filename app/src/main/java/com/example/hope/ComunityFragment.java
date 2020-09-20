@@ -44,8 +44,6 @@ public class ComunityFragment extends Fragment {
     RecyclerView postRecyclerview;
     post_adapter Adapterpost;
     List<detailpost> PostData;
-    DatabaseReference likeReference;
-    Boolean likeChecker = false;
     String UserId;
 
 
@@ -80,16 +78,12 @@ public class ComunityFragment extends Fragment {
         databaseReference = database.getReference("Posts");
         postRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //likeReference = database.getReference("Likes");
-       // final String postlikekey = getReference
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
-
 
 
         databaseReference.addValueEventListener( new ValueEventListener() {
