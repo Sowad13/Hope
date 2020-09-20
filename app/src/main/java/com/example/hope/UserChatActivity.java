@@ -58,7 +58,7 @@ public class UserChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_chat);
 
-        /*Toolbar toolbar = findViewById(R.id.msg_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,7 +67,7 @@ public class UserChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
             }
-        });*/
+        });
 
 
         recyclerView = findViewById(R.id.recycler_view_msg);
@@ -98,21 +98,23 @@ public class UserChatActivity extends AppCompatActivity {
             }
         });
 
-
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+        assert userid != null;
         reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Users user = dataSnapshot.getValue(Users.class);
-                /*username.setText(user.getUsername());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Users user = snapshot.getValue(Users.class);
+                assert user != null;
+                username.setText(user.getUsername());
 
                 if(user.getImageURL().equals("default")){
                     profileImage.setImageResource(R.mipmap.ic_launcher);
 
                 }else{
                     Glide.with(UserChatActivity.this).load(user.getImageURL()).into(profileImage);
-                }*/
+                }
 
                 readMessage(fuser.getUid(),userid, user.getImageURL());
 
@@ -148,7 +150,7 @@ public class UserChatActivity extends AppCompatActivity {
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Chats chat = snapshot.getValue(Chats.class);
-                    if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId)||  chat.getReceiver().equals(userId) && chat.getSender().equals(myId)){
+                    if ((chat.getReceiver().equals(myId) && chat.getSender().equals(userId))||  (chat.getReceiver().equals(userId) && chat.getSender().equals(myId))){
                         mChat.add(chat);
 
                     }

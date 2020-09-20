@@ -4,15 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_1"
     tools:context=".UserChatActivity">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+
+            />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_msg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
+        android:layout_below="@+id/toolbar"
         android:layout_above="@+id/linearlayout"
 
         />
@@ -25,27 +52,30 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:padding="8dp"
+        android:backgroundTint="@color/bg_1">
 
         <ImageButton
             android:id="@+id/btn_msgrecord"
             android:layout_width="40dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_marginBottom="5dp"
             android:background="@null"
-            android:elevation="0dp"
+            android:elevation="10dp"
             android:paddingLeft="5dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/ic_mic" />
+            android:src="@drawable/ic_add_black_24dp" />
 
         <EditText
             android:id="@+id/typemessage"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="134dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="3"
-            android:background="@null"
+            android:background="@drawable/custom_textbox"
             android:hint="Aa"
             android:lines="1"
             android:paddingLeft="10dp" />
@@ -61,14 +91,14 @@
         <ImageButton
             android:id="@+id/btn_msgsend"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="@null"
-            android:elevation="0dp"
+            android:elevation="100dp"
             android:paddingLeft="10dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/ic_send" />
+            android:src="@drawable/ic_send_black_24dp" />
 
 
     </LinearLayout>

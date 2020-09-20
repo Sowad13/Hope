@@ -145,8 +145,8 @@
         android:layout_marginLeft="140dp"
         app:cardCornerRadius="150dp">
 
-        <ImageButton
-            android:id="@+id/regDP"
+        <ImageView
+            android:id="@+id/registerimage"
             android:layout_width="142dp"
             android:layout_height="151dp"
             android:background="#ffffff"
