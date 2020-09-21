@@ -7,7 +7,13 @@
     <item android:drawable="@drawable/butterflypose"
         android:duration="3000"/>
 
-    <item android:drawable="@drawable/camelpose"
+    <item android:drawable="@drawable/extendedtrianglepose"
+        android:duration="3000"/>
+
+    <item android:drawable="@drawable/halfmoonpose"
+        android:duration="3000"/>
+
+    <item android:drawable="@drawable/legsupthewallpose"
         android:duration="3000"/>
 
 </animation-list>
