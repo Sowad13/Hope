@@ -104,6 +104,9 @@ public class Dashboard extends AppCompatActivity  {
                         {
                             case R.id.settings:
                                 Toast.makeText(Dashboard.this,"Settings",Toast.LENGTH_SHORT).show();
+                                Intent setintent = new Intent(Dashboard.this,SettingsActivity.class);
+                                startActivity(setintent);
+                                finish();
                                 return true;
                             case R.id.logout:
                                 loadingBar.StartLoadingDialog();

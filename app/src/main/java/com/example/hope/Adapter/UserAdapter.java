@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.hope.Model.Users;
 import com.example.hope.R;
+import com.example.hope.SettingsActivity;
 import com.example.hope.UserChatActivity;
-import com.example.hope.registerUser;
 
 import java.util.List;
 
@@ -60,6 +59,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 Intent intent = new Intent(mContext, UserChatActivity.class);
                 intent.putExtra("userid", user.getId());
                 mContext.startActivity(intent);
+
+
+
+
             }
         });
     }
