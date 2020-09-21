@@ -21,9 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 public class SelfcareFragment extends Fragment {
 
     DatabaseReference websitereference;
-    String linkone,linktwo;
+    String linkone,linktwo,linkthree,linkfour,linkfive;
 
-    Button storybutton,twostorybutton,s,t,u,v,w;
+    Button storybutton,twostorybutton,s,t,u,z,w;
+    Button three,four,five;
 
     @Nullable
     @Override
@@ -32,8 +33,61 @@ public class SelfcareFragment extends Fragment {
 
         websitereference = FirebaseDatabase.getInstance().getReference();
 
-        storybutton =v.findViewById( R.id.newsbutton );
+        s = v.findViewById( R.id.a );
+        s.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
+            }
+        } );
+
+        t = v.findViewById( R.id.b);
+        t.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
+            }
+        } );
+
+
+        u = v.findViewById( R.id.c );
+        u.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
+            }
+        } );
+        z= v.findViewById( R.id.d );
+        z.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
+            }
+        } );
+        w = v.findViewById( R.id.e );
+        w.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(),first_yoga.class);
+                startActivity(intent);
+            }
+        } );
+
+
+        storybutton =v.findViewById( R.id.twobutton );
         twostorybutton = v.findViewById( R.id.onebutton );
+        three = v.findViewById( R.id.threebutton);
+        four = v.findViewById( R.id.fourbutton );
+        five = v.findViewById( R.id.fivebutton );
 
         websitereference.addValueEventListener( new ValueEventListener() {
             @Override
@@ -55,24 +109,40 @@ public class SelfcareFragment extends Fragment {
                         website(  linktwo);
                     }
                 } );
+
+                linkthree = dataSnapshot.child("websites").child( "linkthree" ).getValue().toString();
+               three.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        website(  linkthree);
+                    }
+                } );
+
+                linkfour = dataSnapshot.child("websites").child( "linkfour" ).getValue().toString();
+                four.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        website(  linkfour);
+                    }
+                } );
+
+                linkfive = dataSnapshot.child("websites").child( "linkfive" ).getValue().toString();
+                five.setOnClickListener( new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        website(  linkfive);
+                    }
+                } );
+
             }
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         } );
-
-        s = v.findViewById( R.id.a );
-        s.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(),first_yoga.class);
-                startActivity(intent);
-            }
-        } );
-
 
 
         return v;

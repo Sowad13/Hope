@@ -20,12 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.hope.Model.Users;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -34,8 +38,6 @@ public class Adding_post extends AppCompatActivity {
 
     private static final int REQUESCODE = 1;
     private static final int PReqCode = 1;
-
-    // Dialog storywriting;
 
     ImageView popupUserImage;
     ImageView addpic,addpost;
@@ -282,13 +284,24 @@ public class Adding_post extends AppCompatActivity {
 
     }
 
-    private void postAddedtoFirebase(detailpost detailpost) {
+    private void postAddedtoFirebase(final detailpost detailpost) {
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("Posts");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users");
 
         String key = databaseReference.push().getKey();
         detailpost.setPostKey(key);
+        /*Users users = new Users(  );
+        String uid = users.getId();
+        if (UserId == uid){
+
+            String username = users.getUsername();
+            detailpost.setUsernam( username ) ;
+        }*/
+
+      //  String username = "Nushrattttttttt";
+        //detailpost.setUsernam( username ) ;
 
         databaseReference.child( key ).setValue( detailpost ).addOnSuccessListener( new OnSuccessListener<Void>() {
             @Override

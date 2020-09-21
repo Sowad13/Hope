@@ -24,7 +24,7 @@
     <color name="post_bg">#d5ded1</color>       //#c0cfb8
     <color name="bg_2">#CCFBAC</color>
     <color name="button_color"> #85B885</color>
-    <color name="colorBlack">#000</color>
+    <color name="colorBlack">#000000</color>
     <color name="login_Color">#c9e3ca</color>
 
     <color name="white">#ffffff</color>

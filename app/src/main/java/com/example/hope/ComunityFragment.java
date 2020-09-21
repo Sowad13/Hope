@@ -37,6 +37,7 @@ public class ComunityFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     FirebaseDatabase database;
     DatabaseReference databaseReference;
+    DatabaseReference userRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
 
@@ -78,6 +79,8 @@ public class ComunityFragment extends Fragment {
         databaseReference = database.getReference("Posts");
         postRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        userRef = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+
         return v;
     }
 
@@ -108,7 +111,6 @@ public class ComunityFragment extends Fragment {
 
             }
         } );
-
 
     }
 

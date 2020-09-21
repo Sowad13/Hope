@@ -21,4 +21,18 @@
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="144dp"
         android:background="@drawable/yoga_slider" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="379dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="cursive"
+        android:text="Practice the yoga poses for better sleep cycle"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 </RelativeLayout>

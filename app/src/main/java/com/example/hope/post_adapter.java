@@ -252,6 +252,7 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
                         public void onClick(View v) {
                             if(((imageviewpost)holder).ivlike.getTag().equals("Like")) {
                                 FirebaseDatabase.getInstance().getReference().child("Likes").child( object.getPostKey() ).child( firebaseUser.getUid() ).setValue( true );
+                                Toast.makeText(mContext,"post liked", Toast.LENGTH_LONG).show();
 
                             }
                             else{
@@ -308,7 +309,6 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
         TextView userName;
         ImageView ivuserprofile;
         ImageView picupload;
-        RelativeLayout imgcoverTitle;
         ImageView ivlike,updatepostImageview;
         TextView ivlikenumber;
 
@@ -325,7 +325,6 @@ public  class post_adapter extends RecyclerView.Adapter <RecyclerView.ViewHolder
             ivlike = itemView.findViewById( R.id.ivlikebutton );
             ivlikenumber = itemView.findViewById( R.id.likesnum );
             updatepostImageview = itemView.findViewById( R.id.updatepost );
-           // imgcoverTitle = itemView.findViewById( R.id.relativeTitle );
 
         }
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/bridgepose"
-        android:duration="3000"/>
-
     <item android:drawable="@drawable/butterflypose"
         android:duration="3000"/>
 
+    <item android:drawable="@drawable/bridgepose"
+        android:duration="7000"/>
+
     <item android:drawable="@drawable/extendedtrianglepose"
-        android:duration="3000"/>
-
-    <item android:drawable="@drawable/halfmoonpose"
-        android:duration="3000"/>
-
+        android:duration="7000"/>
     <item android:drawable="@drawable/legsupthewallpose"
-        android:duration="3000"/>
+        android:duration="7000"/>
+    <item android:drawable="@drawable/halfmoonpose"
+        android:duration="7000"/>
+
+
 
 </animation-list>
