@@ -17,6 +17,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.hope.Model.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -102,6 +104,9 @@ public class Dashboard extends AppCompatActivity  {
                         {
                             case R.id.settings:
                                 Toast.makeText(Dashboard.this,"Settings",Toast.LENGTH_SHORT).show();
+                                Intent setintent = new Intent(Dashboard.this,SettingsActivity.class);
+                                startActivity(setintent);
+                                finish();
                                 return true;
                             case R.id.logout:
                                 loadingBar.StartLoadingDialog();
@@ -176,6 +181,8 @@ public class Dashboard extends AppCompatActivity  {
                    DisplayName.setText("Hi, "+dataSnapshot.child("username").getValue());
                }
 
+
+
            }
 
            @Override
@@ -188,6 +195,28 @@ public class Dashboard extends AppCompatActivity  {
 
 
        //Display image
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Users user = dataSnapshot.getValue(Users.class);
+                assert user != null;
+
+
+                if(user.getImageURL().equals("default")){
+                    DisplayUserImage.setImageResource(R.mipmap.ic_launcher);
+
+                }else{
+                    Glide.with(Dashboard.this).load(user.getImageURL()).into(DisplayUserImage);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
